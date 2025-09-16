@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctfi4qvycj36l"]
+
+[ext_resource type="Texture2D" uid="uid://cmr11ychp48gc" path="res://Sprite/T_White16px.png" id="1_ifwva"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w16or"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vep0q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ifwva")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Ground" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w16or")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vep0q")
