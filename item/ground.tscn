@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://ctfi4qvycj36l"]
 
-[ext_resource type="Texture2D" uid="uid://cmr11ychp48gc" path="res://Sprite/T_White16px.png" id="1_ifwva"]
+[ext_resource type="Texture2D" uid="uid://cmr11ychp48gc" path="res://Sprite/S_White16px.png" id="1_ifwva"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w16or"]
+size = Vector2(16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vep0q"]
 animations = [{
