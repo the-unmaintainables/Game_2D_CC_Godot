@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://cywdjepab5vn5"]
+
+[ext_resource type="Script" uid="uid://daujeheukosly" path="res://Script/title.gd" id="1_8abyn"]
+
+[node name="Title" type="Node2D"]
+script = ExtResource("1_8abyn")
+metadata/_edit_group_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "GameStart"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "GO
+"
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_button_pressed"]

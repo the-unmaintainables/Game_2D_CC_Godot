@@ -15,6 +15,11 @@ run/main_scene="uid://cejtco0rrx4bv"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SignalManager="*res://Singletons/signal_manager.gd"
+GameManager="*res://Singletons/game_manager.gd"
+
 [input]
 
 jump={
