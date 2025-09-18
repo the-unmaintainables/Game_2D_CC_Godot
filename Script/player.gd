@@ -6,6 +6,13 @@ const JUMP_VELOCITY = -400.0
 
 @export var hp = 3
 
+func _ready() -> void:
+	var signal_manager = get_node("/root/SignalManager")
+	
+	signal_manager.connect("player_miss", self._on_player_miss)
+
+func _on_player_miss():
+	print("Play miss")
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -32,4 +39,12 @@ func damage(amount):
 	hp -= amount
 	print("Current HP: ", hp)
 	if hp <= 0:
+		SignalManager.player_miss.emit()
 		queue_free()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("Hit")
+	if body.name == "Enemy1":
+		damage(1)
+	pass # Replace with function body.

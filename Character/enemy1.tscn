@@ -21,6 +21,7 @@ animations = [{
 }]
 
 [node name="Enemy1" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_wmkrw")
 
 [node name="Area2D" type="Area2D" parent="."]
