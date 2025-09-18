@@ -10,6 +10,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+# スタートボタンが押されたらステージ1へ移動
 func _on_button_pressed() -> void:
-	print("Button2 Pressed")
 	GameManager.load_stage1_scene()

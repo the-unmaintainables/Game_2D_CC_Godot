@@ -4,7 +4,6 @@ extends Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("ChageStage")
 	pass # Replace with function body.
 
 
@@ -12,7 +11,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
+# プレイヤーが到着したらゴール判定を出して、画面遷移
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		SignalManager.stage_clear.emit()

@@ -15,16 +15,15 @@ func _on_player_miss():
 	print("Play miss")
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	# 重力
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
+	# ジャンプ処理
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	# 左右移動の処理
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = direction * SPEED
@@ -35,6 +34,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+# ダメージを受ける。死亡処理も記述
 func damage(amount):
 	hp -= amount
 	print("Current HP: ", hp)
@@ -42,9 +42,8 @@ func damage(amount):
 		SignalManager.player_miss.emit()
 		queue_free()
 
-
+# プレイヤーの当たり判定に当たる
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("Hit")
 	if body.name == "Enemy1":
 		damage(1)
 	pass # Replace with function body.
