@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 @export var hp = 3
+@export var bullet_scene: PackedScene
 
 func _ready() -> void:
 	var signal_manager = get_node("/root/SignalManager")
@@ -33,7 +33,28 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	
+	# 発射ボタンが押されたら弾を発射する
+	if Input.is_action_just_pressed("attack"):
+		fire_bullet()
 
+
+func fire_bullet():
+	if bullet_scene == null:
+		print("エラー: 弾のシーン")
+		return
+	
+	# 弾のインスタンスを作成
+	var bullet_instance = bullet_scene.instantiate()
+	# 弾の位置を設定
+	bullet_instance.global_position = position
+	# 弾の向きを設定
+	if $AnimatedSprite2D.flip_h:
+		bullet_instance.rotation = deg_to_rad(180)
+	
+	# 現在のシーンに弾を追加
+	get_tree().root.add_child(bullet_instance)
+	
 # ダメージを受ける。死亡処理も記述
 func damage(amount):
 	hp -= amount

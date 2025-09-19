@@ -4,6 +4,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
+@export var hp = 1
 
 func _physics_process(delta: float) -> void:
 	# 重力処理
@@ -23,6 +24,13 @@ func _physics_process(delta: float) -> void:
 		#velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+# ダメージを受ける。死亡処理も記述
+func damage(amount):
+	hp -= amount
+	if hp <= 0:
+		SignalManager.player_miss.emit()
+		queue_free()
 
 # 当たり判定に触れたら
 func _on_area_2d_body_entered(body: Node2D) -> void:
