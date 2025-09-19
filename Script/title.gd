@@ -11,5 +11,8 @@ func _process(delta: float) -> void:
 	pass
 
 # スタートボタンが押されたらステージ1へ移動
-func _on_button_pressed() -> void:
+func _on_start_button_pressed() -> void:
 	GameManager.load_stage1_scene()
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()

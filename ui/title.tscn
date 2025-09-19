@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cywdjepab5vn5"]
+[gd_scene load_steps=5 format=3 uid="uid://cywdjepab5vn5"]
 
 [ext_resource type="Script" uid="uid://daujeheukosly" path="res://Script/title.gd" id="1_8abyn"]
+[ext_resource type="Texture2D" uid="uid://bqv3s8vplubxx" path="res://Sprite/S_Title.png" id="2_5w2xo"]
+[ext_resource type="Texture2D" uid="uid://dnv6ep53hkx7" path="res://Sprite/S_Button1.png" id="3_8lx1x"]
+[ext_resource type="Theme" uid="uid://b6yfl8n2aao2j" path="res://Theme/theme1.tres" id="5_k1m56"]
 
 [node name="Title" type="Node2D"]
 script = ExtResource("1_8abyn")
@@ -8,18 +11,91 @@ metadata/_edit_group_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_top = 295.0
-offset_right = 1152.0
-offset_bottom = 318.0
-text = "GameStart"
-horizontal_alignment = 1
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5w2xo")
 
-[node name="StartButton" type="Button" parent="CanvasLayer"]
-offset_top = 333.0
-offset_right = 1152.0
-offset_bottom = 364.0
-text = "GO
-"
+[node name="StartTexture" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -673.0
+offset_top = 230.00006
+offset_right = 863.0
+offset_bottom = 1254.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.37051237, 0.25815007)
+texture = ExtResource("3_8lx1x")
 
-[connection signal="pressed" from="CanvasLayer/StartButton" to="." method="_on_button_pressed"]
+[node name="StartButton" type="Button" parent="CanvasLayer/StartTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 223.90102
+offset_top = 289.76523
+offset_right = 223.901
+offset_bottom = 289.76526
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7091894, 0.44424036)
+
+[node name="StartLabel" type="Label" parent="CanvasLayer/StartTexture/StartButton"]
+layout_mode = 0
+offset_left = 209.4732
+offset_top = 158.6761
+offset_right = 529.4732
+offset_bottom = 222.67612
+scale = Vector2(3.5773537, 9.384577)
+theme = ExtResource("5_k1m56")
+theme_override_font_sizes/font_size = 64
+text = "Start"
+
+[node name="ExitTexture" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 74.0
+offset_top = 220.0
+offset_right = 1610.0
+offset_bottom = 1244.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.37051237, 0.25815007)
+texture = ExtResource("3_8lx1x")
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/ExitTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 223.90102
+offset_top = 289.76523
+offset_right = 223.901
+offset_bottom = 289.76526
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7091894, 0.44424036)
+
+[node name="ExitLabel" type="Label" parent="CanvasLayer/ExitTexture/ExitButton"]
+layout_mode = 0
+offset_left = 247.53024
+offset_top = 141.23637
+offset_right = 567.5303
+offset_bottom = 205.23639
+scale = Vector2(3.5773537, 9.384577)
+theme = ExtResource("5_k1m56")
+theme_override_font_sizes/font_size = 64
+text = "Exit"
+
+[connection signal="pressed" from="CanvasLayer/StartTexture/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ExitTexture/ExitButton" to="." method="_on_exit_button_pressed"]
