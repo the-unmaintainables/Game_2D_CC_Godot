@@ -15,4 +15,4 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		SignalManager.stage_clear.emit()
-		get_tree().change_scene_to_packed(Next_Scene)
+		get_tree().change_scene_to_packed.call_deferred(Next_Scene)

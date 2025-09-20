@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 func damage(amount):
 	hp -= amount
 	if hp <= 0:
-		SignalManager.player_miss.emit()
+		GameManager.stage_score += 1000
 		queue_free()
 
 # 当たり判定に触れたら

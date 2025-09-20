@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cejtco0rrx4bv"]
+[gd_scene load_steps=7 format=3 uid="uid://cejtco0rrx4bv"]
 
 [ext_resource type="PackedScene" uid="uid://bmbt5kjfdxknr" path="res://Character/player.tscn" id="1_xhtwi"]
 [ext_resource type="PackedScene" uid="uid://ctfi4qvycj36l" path="res://Item/ground.tscn" id="2_g6ejq"]
 [ext_resource type="PackedScene" uid="uid://duaqjjplldnyh" path="res://Character/enemy1.tscn" id="3_djkur"]
 [ext_resource type="PackedScene" uid="uid://bwcai6a1sg8w6" path="res://Item/chage_stage.tscn" id="4_h175a"]
-[ext_resource type="PackedScene" uid="uid://cywdjepab5vn5" path="res://ui/title.tscn" id="5_togfq"]
+[ext_resource type="PackedScene" uid="uid://cuihfddu15kv6" path="res://ui/clear.tscn" id="5_togfq"]
+[ext_resource type="Script" uid="uid://d1ybs0j0gq5vv" path="res://Script/timer.gd" id="6_aan6j"]
 
 [node name="Main" type="Node"]
 
@@ -21,3 +22,11 @@ position = Vector2(393, 310)
 [node name="ChageStage" parent="." instance=ExtResource("4_h175a")]
 position = Vector2(682, 325)
 Next_Scene = ExtResource("5_togfq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+script = ExtResource("6_aan6j")
+
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]

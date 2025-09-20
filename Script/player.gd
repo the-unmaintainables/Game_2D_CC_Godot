@@ -10,9 +10,14 @@ func _ready() -> void:
 	var signal_manager = get_node("/root/SignalManager")
 	
 	signal_manager.connect("player_miss", self._on_player_miss)
+	signal_manager.connect("player_timeout", self._on_player_timeout)
+	
 
 func _on_player_miss():
 	print("Play miss")
+
+func _on_player_timeout():
+	print("Player timeout")
 
 func _physics_process(delta: float) -> void:
 	# 重力

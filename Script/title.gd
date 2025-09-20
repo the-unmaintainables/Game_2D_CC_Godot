@@ -12,6 +12,7 @@ func _process(delta: float) -> void:
 
 # スタートボタンが押されたらステージ1へ移動
 func _on_start_button_pressed() -> void:
+	SignalManager.stage_start.emit()
 	GameManager.load_stage1_scene()
 
 func _on_exit_button_pressed() -> void:
