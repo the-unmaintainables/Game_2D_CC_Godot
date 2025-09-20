@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjkr6n2tc1jil"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dj8t0"]
+load_path = "res://.godot/imported/S_Bullet2.png-3d8a9eefb5609fba17062ba119ca338a.ctex"
+
+[node name="White_Boll" type="TextureRect"]
+custom_minimum_size = Vector2(153.6, 102.4)
+offset_right = 153.6
+offset_bottom = 102.399994
+texture = SubResource("CompressedTexture2D_dj8t0")
+expand_mode = 1

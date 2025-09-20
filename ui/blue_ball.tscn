@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnv4ftye21osj"]
+
+[ext_resource type="Texture2D" uid="uid://bny7t62igns7k" path="res://Sprite/S_Bullet.webp" id="1_p3fq5"]
+
+[node name="BlueBall" type="TextureRect"]
+custom_minimum_size = Vector2(153.6, 102.4)
+offset_right = 153.6
+offset_bottom = 102.399994
+texture = ExtResource("1_p3fq5")
+expand_mode = 1
