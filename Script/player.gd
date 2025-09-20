@@ -41,6 +41,8 @@ func _physics_process(delta: float) -> void:
 	
 	# 発射ボタンが押されたら弾を発射する
 	if Input.is_action_just_pressed("attack"):
+		hp += 1
+		SignalManager.update_chage.emit(hp)
 		fire_bullet()
 
 

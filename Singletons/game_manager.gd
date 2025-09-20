@@ -3,8 +3,8 @@ extends Node
 const TITLE_SCENE = preload("res://ui/title.tscn")
 const STAGE1_SCENE = preload("res://Scene/Main.tscn")
 
-var stage_score
-var stage_time
+var stage_score : int
+var stage_time : int
 
 func _ready() -> void:
 	var signal_manager = get_node("/root/SignalManager")
