@@ -11,6 +11,10 @@ var max_chage = GameManager.MAX_CHAGE
 @onready var chage_timer = $ChageTimer
 
 func _ready() -> void:
+	# アニメーションはPlay処理をしないと始めのアニメーションすら動かない
+	$kirakira1.play("default")
+	$kirakira2.play("default")
+	
 	var signal_manager = get_node("/root/SignalManager")
 	
 	signal_manager.connect("player_miss", self._on_player_miss)
@@ -44,6 +48,14 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 		# プレイヤーの向きを決める
 		$AnimatedSprite2D.flip_h = direction < 0
+		if direction < 0:
+			# キラキラも反転
+			$kirakira1.position.x = min($kirakira1.position.x,-$kirakira1.position.x)
+			$kirakira2.position.x = max($kirakira2.position.x,-$kirakira2.position.x)
+		else:
+			# キラキラも反転
+			$kirakira1.position.x = max($kirakira1.position.x,-$kirakira1.position.x)
+			$kirakira2.position.x = min($kirakira2.position.x,-$kirakira2.position.x)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
@@ -58,9 +70,13 @@ func _physics_process(delta: float) -> void:
 		# タイマーがまだ動いていないなら開始
 		if chage_timer.is_stopped():
 			chage_timer.start()
+			$kirakira1.hide()
+			$kirakira2.hide()
 	else:
 		# ボタンが話されたらタイマーを停止
 		chage_timer.stop()
+		$kirakira1.show()
+		$kirakira2.show()
 
 # 弾を打つ処理
 func fire_bullet():
@@ -88,6 +104,9 @@ func fire_bullet():
 	
 # ダメージを受ける。死亡処理も記述
 func damage(amount):
+	# チャージしていないときは無敵
+	if chage_timer.is_stopped():
+		return
 	hp -= amount
 	print("Current HP: ", hp)
 	if hp <= 0:
@@ -98,7 +117,6 @@ func damage(amount):
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Enemy1":
 		damage(1)
-	pass # Replace with function body.
 
 # チャージタイマーの時間が来た時の処理 1秒に一回
 func _on_chage_timer_timeout() -> void:

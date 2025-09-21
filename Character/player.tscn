@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmbt5kjfdxknr"]
+[gd_scene load_steps=13 format=3 uid="uid://bmbt5kjfdxknr"]
 
 [ext_resource type="Script" uid="uid://bifdrahfhj7do" path="res://Script/player.gd" id="1_3c51y"]
 [ext_resource type="Texture2D" uid="uid://byioonrgem0g1" path="res://Sprite/S_Player_Sample.png" id="1_6ele1"]
 [ext_resource type="PackedScene" uid="uid://06v2tskuo44s" path="res://Item/bullet1.tscn" id="2_2brrg"]
+[ext_resource type="Texture2D" uid="uid://c0vrdhfu3wypu" path="res://Sprite/S_kirakira1.png" id="4_cyipv"]
+[ext_resource type="Texture2D" uid="uid://baklurnarn6bh" path="res://Sprite/S_kirakira2.png" id="5_76vsb"]
+[ext_resource type="Texture2D" uid="uid://feir5yg1rl1s" path="res://Sprite/S_kirakira3.png" id="6_crn8y"]
+[ext_resource type="Texture2D" uid="uid://cqa23nsiss4h3" path="res://Sprite/S_kirakira4.png" id="7_8qfpo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3c51y"]
 size = Vector2(12.758614, 15.604469)
@@ -21,6 +25,46 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2brrg"]
 radius = 1.5762919
 height = 28.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ur0x2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_cyipv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_76vsb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_crn8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8qfpo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cyipv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_cyipv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_76vsb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_crn8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8qfpo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 3
@@ -47,6 +91,17 @@ scale = Vector2(1.0400003, 1)
 shape = SubResource("CapsuleShape2D_2brrg")
 
 [node name="ChageTimer" type="Timer" parent="."]
+
+[node name="kirakira1" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(10.999999, -14.999999)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_ur0x2")
+
+[node name="kirakira2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-12.999999, 6.9999995)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_cyipv")
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="ChageTimer" to="." method="_on_chage_timer_timeout"]
