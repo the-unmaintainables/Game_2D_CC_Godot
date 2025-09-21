@@ -5,8 +5,10 @@ const JUMP_VELOCITY = -400.0
 
 @export var hp = 3
 @export var bullet_scene: PackedScene
-var sum_chage
+var current_chage
 var max_chage = GameManager.MAX_CHAGE
+
+@onready var chage_timer = $ChageTimer
 
 func _ready() -> void:
 	var signal_manager = get_node("/root/SignalManager")
@@ -15,8 +17,9 @@ func _ready() -> void:
 	signal_manager.connect("player_timeout", self._on_player_timeout)
 	
 	# チャージ数の初期化
-	sum_chage = 0
-	SignalManager.update_chage.emit(sum_chage)
+	current_chage = 0
+	SignalManager.update_chage.emit(current_chage)
+	
 	
 # プレイヤーがミスした時
 func _on_player_miss():
@@ -48,15 +51,29 @@ func _physics_process(delta: float) -> void:
 	
 	# 発射ボタンが押されたら弾を発射する
 	if Input.is_action_just_pressed("attack"):
-		sum_chage += 1
-		SignalManager.update_chage.emit(sum_chage)
 		fire_bullet()
+	
+	# チャージボタンが押されたら
+	if Input.is_action_pressed("chage"):
+		# タイマーがまだ動いていないなら開始
+		if chage_timer.is_stopped():
+			chage_timer.start()
+	else:
+		# ボタンが話されたらタイマーを停止
+		chage_timer.stop()
 
-
+# 弾を打つ処理
 func fire_bullet():
 	if bullet_scene == null:
 		print("エラー: 弾のシーン")
 		return
+	# チャージがなかったら打たない
+	if current_chage <= 0:
+		return
+	
+	# チャージ数の変更
+	current_chage -= 1
+	SignalManager.update_chage.emit(current_chage)
 	
 	# 弾のインスタンスを作成
 	var bullet_instance = bullet_scene.instantiate()
@@ -82,3 +99,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Enemy1":
 		damage(1)
 	pass # Replace with function body.
+
+# チャージタイマーの時間が来た時の処理 1秒に一回
+func _on_chage_timer_timeout() -> void:
+	current_chage = min(current_chage+1, max_chage)
+	SignalManager.update_chage.emit(current_chage)
+	print("現在のチャージ数： " + str(current_chage))
