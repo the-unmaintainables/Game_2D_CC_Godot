@@ -12,7 +12,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# タイマーの残り時間を取得
 	var remaining_time = int(time_left)
-	#print("残り時間: " + str(remaining_time))
+	GameManager.stage_time = remaining_time
 
 # ステージクリアした時のタイムを記録
 func _on_player_clear():

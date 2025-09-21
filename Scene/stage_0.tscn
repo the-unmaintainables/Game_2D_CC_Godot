@@ -1,0 +1,27 @@
+[gd_scene load_steps=8 format=3 uid="uid://xupiaq42h3oi"]
+
+[ext_resource type="Script" uid="uid://6o70bm1xurb7" path="res://Script/resize.gd" id="1_i1gwp"]
+[ext_resource type="PackedScene" uid="uid://bmbt5kjfdxknr" path="res://Character/player.tscn" id="1_oxiro"]
+[ext_resource type="PackedScene" uid="uid://ctfi4qvycj36l" path="res://Item/ground.tscn" id="2_i1gwp"]
+[ext_resource type="PackedScene" uid="uid://6b6n75o2lapl" path="res://Item/stage_timer.tscn" id="4_knqoj"]
+[ext_resource type="PackedScene" uid="uid://bwcai6a1sg8w6" path="res://Item/chage_stage.tscn" id="5_oojy8"]
+[ext_resource type="PackedScene" uid="uid://cuihfddu15kv6" path="res://ui/clear.tscn" id="6_e8h51"]
+[ext_resource type="PackedScene" uid="uid://dmtxev4mh22to" path="res://Item/player_camera.tscn" id="7_oojy8"]
+
+[node name="Stage0" type="Node2D"]
+script = ExtResource("1_i1gwp")
+
+[node name="Player" parent="." instance=ExtResource("1_oxiro")]
+position = Vector2(966, 527)
+
+[node name="Ground" parent="." instance=ExtResource("2_i1gwp")]
+position = Vector2(889.0001, 938)
+scale = Vector2(124.81872, -7.179811)
+
+[node name="StageTimer" parent="." instance=ExtResource("4_knqoj")]
+
+[node name="ChageStage" parent="." instance=ExtResource("5_oojy8")]
+position = Vector2(1524, 754)
+Next_Scene = ExtResource("6_e8h51")
+
+[node name="PlayerCamera" parent="." instance=ExtResource("7_oojy8")]

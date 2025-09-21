@@ -34,6 +34,7 @@ func _on_player_timeout():
 	print("Player timeout")
 
 func _physics_process(delta: float) -> void:
+	
 	# 重力
 	if not is_on_floor():
 		velocity += get_gravity() * delta

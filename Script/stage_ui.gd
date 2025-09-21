@@ -22,6 +22,6 @@ func _update_score():
 
 # タイムを更新する関数
 func _on_timer_timeout() -> void:
-	var now_time = self.get_parent().get_node("StageTimer").time_left
+	var now_time = GameManager.stage_time
 	$TimeLabel.text = "Time:%03d" % int(now_time)
 	pass # Replace with function body.

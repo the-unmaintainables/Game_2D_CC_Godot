@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmtxev4mh22to"]
+
+[ext_resource type="PackedScene" uid="uid://dvx28i76dkle8" path="res://ui/stage_ui.tscn" id="1_ao6dq"]
+[ext_resource type="Script" uid="uid://crs0v7fy8fu1t" path="res://Script/player_camera.gd" id="1_b57ly"]
+
+[node name="PlayerCamera" type="Camera2D"]
+script = ExtResource("1_b57ly")
+
+[node name="StageUi" parent="." instance=ExtResource("1_ao6dq")]
+position = Vector2(-956, -522)
