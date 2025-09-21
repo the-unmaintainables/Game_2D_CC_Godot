@@ -30,6 +30,7 @@ func damage(amount):
 	hp -= amount
 	if hp <= 0:
 		GameManager.stage_score += 1000
+		SignalManager.update_score.emit()
 		queue_free()
 
 # 当たり判定に触れたら

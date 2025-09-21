@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvx28i76dkle8"]
+[gd_scene load_steps=6 format=3 uid="uid://dvx28i76dkle8"]
 
+[ext_resource type="Script" uid="uid://75qkb8osj7e8" path="res://Script/stage_ui.gd" id="1_dd2to"]
 [ext_resource type="Script" uid="uid://d12spk5g04mnw" path="res://Script/grid_container.gd" id="1_ld8wk"]
 [ext_resource type="PackedScene" uid="uid://dnv4ftye21osj" path="res://ui/blue_ball.tscn" id="2_51llk"]
 [ext_resource type="PackedScene" uid="uid://cjkr6n2tc1jil" path="res://ui/white_boll.tscn" id="3_dd2to"]
+[ext_resource type="Theme" uid="uid://b6yfl8n2aao2j" path="res://Theme/theme1.tres" id="4_51llk"]
 
 [node name="StageUi" type="Node2D"]
+script = ExtResource("1_dd2to")
 metadata/_edit_group_ = true
 
 [node name="GridContainer" type="GridContainer" parent="."]
@@ -16,3 +19,26 @@ columns = 5
 script = ExtResource("1_ld8wk")
 blue_bullet = ExtResource("2_51llk")
 white_bullet = ExtResource("3_dd2to")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 14.0
+offset_right = 778.0
+offset_bottom = 78.0
+theme = ExtResource("4_51llk")
+text = "Score: 10000"
+
+[node name="TimeLabel" type="Label" parent="."]
+anchors_preset = -1
+offset_left = 1401.0
+offset_top = 9.0
+offset_right = 1913.0
+offset_bottom = 73.0
+grow_horizontal = 0
+theme = ExtResource("4_51llk")
+text = "Time: 99"
+
+[node name="Timer" type="Timer" parent="TimeLabel"]
+autostart = true
+
+[connection signal="timeout" from="TimeLabel/Timer" to="." method="_on_timer_timeout"]

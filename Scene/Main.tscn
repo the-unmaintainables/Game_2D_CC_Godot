@@ -29,7 +29,7 @@ position = Vector2(393, 310)
 position = Vector2(682, 325)
 Next_Scene = ExtResource("5_togfq")
 
-[node name="Timer" type="Timer" parent="CanvasLayer"]
+[node name="StageTimer" type="Timer" parent="CanvasLayer"]
 wait_time = 10.0
 one_shot = true
 autostart = true
@@ -37,4 +37,4 @@ script = ExtResource("6_aan6j")
 
 [node name="StageUi" parent="CanvasLayer" instance=ExtResource("7_h3nmf")]
 
-[connection signal="timeout" from="CanvasLayer/Timer" to="CanvasLayer/Timer" method="_on_timeout"]
+[connection signal="timeout" from="CanvasLayer/StageTimer" to="CanvasLayer/StageTimer" method="_on_timeout"]
