@@ -5,6 +5,8 @@ const JUMP_VELOCITY = -400.0
 
 @export var hp = 3
 @export var bullet_scene: PackedScene
+var sum_chage
+var max_chage = GameManager.MAX_CHAGE
 
 func _ready() -> void:
 	var signal_manager = get_node("/root/SignalManager")
@@ -12,10 +14,15 @@ func _ready() -> void:
 	signal_manager.connect("player_miss", self._on_player_miss)
 	signal_manager.connect("player_timeout", self._on_player_timeout)
 	
-
+	# チャージ数の初期化
+	sum_chage = 0
+	SignalManager.update_chage.emit(sum_chage)
+	
+# プレイヤーがミスした時
 func _on_player_miss():
 	print("Play miss")
 
+# 時間切れ
 func _on_player_timeout():
 	print("Player timeout")
 
@@ -41,8 +48,8 @@ func _physics_process(delta: float) -> void:
 	
 	# 発射ボタンが押されたら弾を発射する
 	if Input.is_action_just_pressed("attack"):
-		hp += 1
-		SignalManager.update_chage.emit(hp)
+		sum_chage += 1
+		SignalManager.update_chage.emit(sum_chage)
 		fire_bullet()
 
 
@@ -60,7 +67,7 @@ func fire_bullet():
 		bullet_instance.rotation = deg_to_rad(180)
 	
 	# 現在のシーンに弾を追加
-	get_tree().root.add_child(bullet_instance)
+	self.get_parent().add_child(bullet_instance)
 	
 # ダメージを受ける。死亡処理も記述
 func damage(amount):
