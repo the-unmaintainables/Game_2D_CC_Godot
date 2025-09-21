@@ -2,6 +2,7 @@ extends Node
 
 const TITLE_SCENE = preload("res://ui/title.tscn")
 const STAGE1_SCENE = preload("res://Scene/Main.tscn")
+const MAX_CHAGE = 5
 
 var stage_score : int
 var stage_time : int

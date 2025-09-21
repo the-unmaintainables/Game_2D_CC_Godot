@@ -3,6 +3,7 @@ extends GridContainer
 @export var blue_bullet: PackedScene
 @export var white_bullet: PackedScene
 var nodes = [] # 追加したノードを管理する配列
+var max_chage = GameManager.MAX_CHAGE
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,10 +18,10 @@ func _ready() -> void:
 
 func _on_update_chage(count):
 	remove_nodes()
-	for i in range(min(count,5)):
+	for i in range(min(count,max_chage)):
 		add_node(0)
 	
-	for i in range(min(count,5), 5):
+	for i in range(min(count,max_chage), max_chage):
 		add_node(1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
