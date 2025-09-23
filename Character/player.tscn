@@ -1,11 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://bmbt5kjfdxknr"]
+[gd_scene load_steps=17 format=3 uid="uid://bmbt5kjfdxknr"]
 
 [ext_resource type="Script" uid="uid://bifdrahfhj7do" path="res://Script/player.gd" id="1_3c51y"]
 [ext_resource type="Texture2D" uid="uid://byioonrgem0g1" path="res://Sprite/S_Player_Sample.png" id="1_6ele1"]
 [ext_resource type="PackedScene" uid="uid://06v2tskuo44s" path="res://Item/bullet1.tscn" id="2_2brrg"]
+[ext_resource type="Texture2D" uid="uid://dlcm1lbe3gh16" path="res://Sprite/split_0_0.png" id="4_8qfpo"]
 [ext_resource type="Texture2D" uid="uid://c0vrdhfu3wypu" path="res://Sprite/S_kirakira1.png" id="4_cyipv"]
+[ext_resource type="Texture2D" uid="uid://c2gw7soneunp" path="res://Sprite/split_1_0.png" id="4_ur0x2"]
 [ext_resource type="Texture2D" uid="uid://baklurnarn6bh" path="res://Sprite/S_kirakira2.png" id="5_76vsb"]
+[ext_resource type="Texture2D" uid="uid://b7bomsx0sjed3" path="res://Sprite/split_0_1.png" id="5_ur0x2"]
 [ext_resource type="Texture2D" uid="uid://feir5yg1rl1s" path="res://Sprite/S_kirakira3.png" id="6_crn8y"]
+[ext_resource type="Texture2D" uid="uid://bjajmq2fflqpw" path="res://Sprite/split_0_2.png" id="6_xaqyh"]
 [ext_resource type="Texture2D" uid="uid://cqa23nsiss4h3" path="res://Sprite/S_kirakira4.png" id="7_8qfpo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3c51y"]
@@ -20,6 +24,28 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ur0x2")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_xaqyh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ur0x2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8qfpo")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2brrg"]
@@ -81,7 +107,7 @@ shape = SubResource("RectangleShape2D_3c51y")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3c51y")
-animation = &"idle"
+animation = &"walk"
 
 [node name="HitBox" type="Area2D" parent="."]
 scale = Vector2(4.8800006, 1)

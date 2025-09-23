@@ -53,6 +53,7 @@ func _physics_process(delta: float) -> void:
 	# 重力
 	if not is_on_floor():
 		velocity += get_gravity() * delta * scale_factor * 1.5
+		$AnimatedSprite2D.play("jump")
 
 	# ジャンプ処理
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -61,6 +62,10 @@ func _physics_process(delta: float) -> void:
 	# 左右移動の処理
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
+		# アニメーションの変更
+		if is_on_floor():
+			if $AnimatedSprite2D.animation != "walk":
+				$AnimatedSprite2D.animation = "walk"
 		velocity.x = direction * SPEED * scale_factor
 		# プレイヤーの向きを決める
 		$AnimatedSprite2D.flip_h = direction < 0
@@ -73,6 +78,8 @@ func _physics_process(delta: float) -> void:
 			$kirakira1.position.x = max($kirakira1.position.x,-$kirakira1.position.x)
 			$kirakira2.position.x = min($kirakira2.position.x,-$kirakira2.position.x)
 	else:
+		if is_on_floor():
+			$AnimatedSprite2D.animation = "idle"
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
