@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://xupiaq42h3oi"]
+[gd_scene load_steps=13 format=3 uid="uid://xupiaq42h3oi"]
 
 [ext_resource type="Script" uid="uid://6o70bm1xurb7" path="res://Script/resize.gd" id="1_i1gwp"]
 [ext_resource type="PackedScene" uid="uid://bmbt5kjfdxknr" path="res://Character/player.tscn" id="1_oxiro"]
@@ -9,24 +9,45 @@
 [ext_resource type="PackedScene" uid="uid://dmtxev4mh22to" path="res://Item/player_camera.tscn" id="7_oojy8"]
 [ext_resource type="PackedScene" uid="uid://ywqspy7mrmpe" path="res://Character/path_enemy1.tscn" id="8_e8h51"]
 [ext_resource type="PackedScene" uid="uid://duaqjjplldnyh" path="res://Character/enemy1.tscn" id="9_ngjeh"]
+[ext_resource type="PackedScene" uid="uid://dl4c3g5ndsanm" path="res://Scene/map1.tscn" id="10_afeoy"]
+
+[sub_resource type="Curve2D" id="Curve2D_ngjeh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 448, 200, 0, 0, 0, 0, 904, 200)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_afeoy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3056, 264, 0, 0, 0, 0, 3712, 264)
+}
+point_count = 2
 
 [node name="Stage0" type="Node2D"]
 script = ExtResource("1_i1gwp")
 
 [node name="Player" parent="." instance=ExtResource("1_oxiro")]
-position = Vector2(966, 527)
-
-[node name="Ground" parent="." instance=ExtResource("2_i1gwp")]
-position = Vector2(889.0001, 938)
-scale = Vector2(124.81872, -7.179811)
+position = Vector2(65, 127)
 
 [node name="StageTimer" parent="." instance=ExtResource("4_knqoj")]
 
 [node name="ChageStage" parent="." instance=ExtResource("5_oojy8")]
-position = Vector2(1524, 754)
+position = Vector2(5710, 223)
 Next_Scene = ExtResource("6_e8h51")
 
 [node name="PlayerCamera" parent="." instance=ExtResource("7_oojy8")]
 
 [node name="Path_enemy1" parent="." instance=ExtResource("8_e8h51")]
+curve = SubResource("Curve2D_ngjeh")
 EnemyScene = ExtResource("9_ngjeh")
+
+[node name="Node2D" parent="." instance=ExtResource("10_afeoy")]
+position = Vector2(-393, 73)
+
+[node name="Path_enemy2" parent="." instance=ExtResource("8_e8h51")]
+curve = SubResource("Curve2D_afeoy")
+EnemyScene = ExtResource("9_ngjeh")
+
+[node name="Ground" parent="." instance=ExtResource("2_i1gwp")]
+position = Vector2(0, 480.00018)
+scale = Vector2(948.47687, -5.8208528)

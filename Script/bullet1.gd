@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed = 500
+@export var speed = 250
 var lifetime = 3.0 # 寿命を3秒に設定
 
 # Called when the node enters the scene tree for the first time.

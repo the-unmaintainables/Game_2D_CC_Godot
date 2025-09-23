@@ -3,12 +3,13 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
-@export var hp = 3
+@export var hp = 1
 @export var bullet_scene: PackedScene
 var current_chage
 var max_chage = GameManager.MAX_CHAGE
 
 @onready var chage_timer = $ChageTimer
+@onready var default_position = position
 
 func _ready() -> void:
 	# アニメーションはPlay処理をしないと始めのアニメーションすら動かない
@@ -28,6 +29,8 @@ func _ready() -> void:
 # プレイヤーがミスした時
 func _on_player_miss():
 	print("Play miss")
+	position = default_position
+	hp = 1
 
 # 時間切れ
 func _on_player_timeout():
@@ -104,15 +107,14 @@ func fire_bullet():
 	self.get_parent().add_child(bullet_instance)
 	
 # ダメージを受ける。死亡処理も記述
-func damage(amount):
+func damage(amount, penetration=false):
 	# チャージしていないときは無敵
-	if chage_timer.is_stopped():
+	if not penetration and chage_timer.is_stopped():
 		return
 	hp -= amount
 	print("Current HP: ", hp)
 	if hp <= 0:
 		SignalManager.player_miss.emit()
-		queue_free()
 
 # プレイヤーの当たり判定に当たる
 func _on_area_2d_body_entered(body: Node2D) -> void:

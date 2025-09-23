@@ -49,6 +49,8 @@ func fire_bullet():
 	if $AnimatedSprite2D.flip_h:
 		bullet_instance.rotation = deg_to_rad(180)
 	
+	bullet_instance.position.y -= 15 * 4
+	
 	# 現在のシーンに弾を追加
 	self.get_parent().add_child(bullet_instance)
 

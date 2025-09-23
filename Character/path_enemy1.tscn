@@ -3,15 +3,16 @@
 [ext_resource type="Script" uid="uid://bmw4748l1hs3q" path="res://Script/path_follow_2d.gd" id="1_a5aiu"]
 [ext_resource type="Script" uid="uid://y43w87dqgxma" path="res://Script/path_enemy.gd" id="1_lliwv"]
 
-[sub_resource type="Curve2D" id="Curve2D_ducno"]
+[sub_resource type="Curve2D" id="Curve2D_a5aiu"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 83, 836, 0, 0, 0, 0, 678, 840)
+"points": PackedVector2Array(0, 0, 0, 0, 3008, 264, 0, 0, 0, 0, 3744, 264)
 }
 point_count = 2
 
 [node name="Path_enemy1" type="Path2D"]
-curve = SubResource("Curve2D_ducno")
+curve = SubResource("Curve2D_a5aiu")
 script = ExtResource("1_lliwv")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(3008, 264)
 script = ExtResource("1_a5aiu")

@@ -7,6 +7,7 @@
 size = Vector2(37, 23)
 
 [node name="Bullet1" type="Area2D"]
+scale = Vector2(4, 4)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_xsadv")
