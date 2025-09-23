@@ -1,7 +1,10 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 500.0
+const JUMP_VELOCITY = -800.0
+# 基準となる画面サイズ（デザイン時の解像度）
+const BASE_WIDTH = 1920
+const BASE_HEIGHT = 1080
 
 @export var hp = 1
 @export var bullet_scene: PackedScene
@@ -37,19 +40,28 @@ func _on_player_timeout():
 	print("Player timeout")
 
 func _physics_process(delta: float) -> void:
+	# 現在のビューポートのサイズを取得
+	var current_size = get_viewport().size
+	
+	# 幅と高さの比率を計算
+	var scale_x = current_size.x / float(BASE_WIDTH)
+	var scale_y = current_size.y / float(BASE_HEIGHT)
+	
+	# どちらか小さい方の比率をUI全体のスケールとして使用
+	var scale_factor = min(scale_x, scale_y)
 	
 	# 重力
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * delta * scale_factor * 1.5
 
 	# ジャンプ処理
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		velocity.y = JUMP_VELOCITY * scale_factor
 
 	# 左右移動の処理
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * SPEED * scale_factor
 		# プレイヤーの向きを決める
 		$AnimatedSprite2D.flip_h = direction < 0
 		if direction < 0:
