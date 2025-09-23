@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://xupiaq42h3oi"]
+[gd_scene load_steps=15 format=3 uid="uid://xupiaq42h3oi"]
 
 [ext_resource type="Script" uid="uid://6o70bm1xurb7" path="res://Script/resize.gd" id="1_i1gwp"]
 [ext_resource type="PackedScene" uid="uid://bmbt5kjfdxknr" path="res://Character/player.tscn" id="1_oxiro"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ywqspy7mrmpe" path="res://Character/path_enemy1.tscn" id="8_e8h51"]
 [ext_resource type="PackedScene" uid="uid://duaqjjplldnyh" path="res://Character/enemy1.tscn" id="9_ngjeh"]
 [ext_resource type="PackedScene" uid="uid://dl4c3g5ndsanm" path="res://Scene/map1.tscn" id="10_afeoy"]
+[ext_resource type="PackedScene" uid="uid://dk2nconwmeh1j" path="res://Character/enemy2.tscn" id="11_p8mhe"]
 
 [sub_resource type="Curve2D" id="Curve2D_ngjeh"]
 _data = {
@@ -20,6 +21,12 @@ point_count = 2
 [sub_resource type="Curve2D" id="Curve2D_afeoy"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 3056, 264, 0, 0, 0, 0, 3712, 264)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_jsk2b"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 4648, 264, 0, 0, 0, 0, 5528, 264)
 }
 point_count = 2
 
@@ -49,5 +56,9 @@ curve = SubResource("Curve2D_afeoy")
 EnemyScene = ExtResource("9_ngjeh")
 
 [node name="Ground" parent="." instance=ExtResource("2_i1gwp")]
-position = Vector2(0, 480.00018)
+position = Vector2(0, 584)
 scale = Vector2(948.47687, -5.8208528)
+
+[node name="Path_enemy3" parent="." instance=ExtResource("8_e8h51")]
+curve = SubResource("Curve2D_jsk2b")
+EnemyScene = ExtResource("11_p8mhe")

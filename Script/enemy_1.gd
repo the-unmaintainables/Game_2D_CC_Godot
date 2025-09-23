@@ -5,6 +5,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 @export var hp = 1
+@export var score = 1000
 @export var bullet_scene: PackedScene
 
 func _physics_process(delta: float) -> void:
@@ -25,7 +26,7 @@ func _physics_process(delta: float) -> void:
 func damage(amount):
 	hp -= amount
 	if hp <= 0:
-		GameManager.stage_score += 1000
+		GameManager.stage_score += score
 		SignalManager.update_score.emit()
 		queue_free()
 

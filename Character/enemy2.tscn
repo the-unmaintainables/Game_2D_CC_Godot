@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://dk2nconwmeh1j"]
+
+[ext_resource type="Script" uid="uid://cgdev62f4r4ap" path="res://Script/enemy_1.gd" id="1_2fswr"]
+[ext_resource type="PackedScene" uid="uid://dxbnkh0fbyalp" path="res://Item/bullet2.tscn" id="2_8o213"]
+[ext_resource type="Texture2D" uid="uid://cs3t8dl7sl2bo" path="res://Sprite/S_Boss.png" id="3_2fswr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wmkrw"]
+size = Vector2(63, 67.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6foqs"]
+size = Vector2(61.75, 66.25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bsfn5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2fswr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy2" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+collision_layer = 2
+script = ExtResource("1_2fswr")
+hp = 5
+score = 10000
+bullet_scene = ExtResource("2_8o213")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -47.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 13.75)
+shape = SubResource("RectangleShape2D_wmkrw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.625, -33.25)
+shape = SubResource("RectangleShape2D_6foqs")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_bsfn5")
+
+[node name="BulletTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]
