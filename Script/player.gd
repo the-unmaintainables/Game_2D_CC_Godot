@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	
 	# どちらか小さい方の比率をUI全体のスケールとして使用
 	var scale_factor = min(scale_x, scale_y)
-	scale_factor = 1.0 / scale_factor
+	scale_factor = 1.0
 	
 	# 重力
 	if not is_on_floor():
