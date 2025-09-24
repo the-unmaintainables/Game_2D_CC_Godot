@@ -78,5 +78,6 @@ text = "Title"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
+zoom = Vector2(1.1, 1.1)
 
 [connection signal="pressed" from="TextureRect/TileTexture/TitleButton" to="." method="_on_title_button_pressed"]

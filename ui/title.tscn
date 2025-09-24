@@ -83,6 +83,7 @@ text = "Exit"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
+zoom = Vector2(1.1, 1.1)
 
 [connection signal="pressed" from="StartTexture/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="ExitTexture/ExitButton" to="." method="_on_exit_button_pressed"]
