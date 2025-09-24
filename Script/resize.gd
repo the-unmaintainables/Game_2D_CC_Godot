@@ -22,5 +22,5 @@ func _on_viewport_size_changed():
 	
 	# CanvasLayer全体のスケールを更新
 	set_scale(Vector2(scale_factor, scale_factor))
-	print(scale_x)
-	print(scale_y)
+	#print(scale_x)
+	#print(scale_y)

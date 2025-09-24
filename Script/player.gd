@@ -38,6 +38,7 @@ func _on_player_miss():
 # 時間切れ
 func _on_player_timeout():
 	print("Player timeout")
+	SignalManager.player_miss.emit()
 
 func _physics_process(delta: float) -> void:
 	# 現在のビューポートのサイズを取得

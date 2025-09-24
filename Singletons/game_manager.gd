@@ -11,6 +11,7 @@ func _ready() -> void:
 	var signal_manager = get_node("/root/SignalManager")
 	
 	signal_manager.connect("stage_start", self.variable_init)
+	signal_manager.connect("player_timeout", self.variable_init)
 
 # スコアとタイムの初期化
 func variable_init():
