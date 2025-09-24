@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 500.0
-const JUMP_VELOCITY = -800.0
+const JUMP_VELOCITY = -700.0
 # 基準となる画面サイズ（デザイン時の解像度）
 const BASE_WIDTH = 1920
 const BASE_HEIGHT = 1080
@@ -50,6 +50,7 @@ func _physics_process(delta: float) -> void:
 	
 	# どちらか小さい方の比率をUI全体のスケールとして使用
 	var scale_factor = min(scale_x, scale_y)
+	scale_factor = 1
 	
 	# 重力
 	if not is_on_floor():
