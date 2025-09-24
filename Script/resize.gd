@@ -6,8 +6,9 @@ const BASE_HEIGHT = 1080
 
 func _ready():
 	# 画面サイズが変更されたときに_on_viewport_size_changed関数を呼び出す
-	get_viewport().size_changed.connect(_on_viewport_size_changed)
-	_on_viewport_size_changed() # 初期サイズに合わせて一度実行
+	#get_viewport().size_changed.connect(_on_viewport_size_changed)
+	#_on_viewport_size_changed() # 初期サイズに合わせて一度実行
+	pass
 
 func _on_viewport_size_changed():
 	# 現在のビューポートのサイズを取得
@@ -22,5 +23,5 @@ func _on_viewport_size_changed():
 	
 	# CanvasLayer全体のスケールを更新
 	set_scale(Vector2(scale_factor, scale_factor))
-	#print(scale_x)
-	#print(scale_y)
+	print(scale_x)
+	print(scale_y)

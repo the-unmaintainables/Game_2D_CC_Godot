@@ -9,8 +9,8 @@ func _ready() -> void:
 	get_tree().paused = false
 	
 	# 画面サイズが変更されたときに_on_viewport_size_changed関数を呼び出す
-	get_viewport().size_changed.connect(_on_viewport_size_changed)
-	_on_viewport_size_changed() # 初期サイズに合わせて一度実行
+	#get_viewport().size_changed.connect(_on_viewport_size_changed)
+	#_on_viewport_size_changed() # 初期サイズに合わせて一度実行
 
 func on_timer_timeout():
 	SignalManager.stage_start.emit()
