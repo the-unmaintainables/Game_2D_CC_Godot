@@ -10,6 +10,8 @@ func _ready() -> void:
 	# update_scoreが発信されたら
 	var signal_manager = get_node("/root/SignalManager")
 	signal_manager.connect("update_score", self._update_score)
+	
+	get_tree().create_timer(0.1).timeout.connect(_on_timer_timeout)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

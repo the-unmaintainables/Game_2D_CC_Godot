@@ -1,6 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://xupiaq42h3oi"]
+[gd_scene load_steps=18 format=3 uid="uid://xupiaq42h3oi"]
 
-[ext_resource type="Script" uid="uid://6o70bm1xurb7" path="res://Script/resize.gd" id="1_i1gwp"]
+[ext_resource type="Script" uid="uid://6o70bm1xurb7" path="res://Script/stage_script.gd" id="1_i1gwp"]
 [ext_resource type="PackedScene" uid="uid://bmbt5kjfdxknr" path="res://Character/player.tscn" id="1_oxiro"]
 [ext_resource type="PackedScene" uid="uid://ctfi4qvycj36l" path="res://Item/ground.tscn" id="2_i1gwp"]
 [ext_resource type="PackedScene" uid="uid://6b6n75o2lapl" path="res://Item/stage_timer.tscn" id="4_knqoj"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://dl4c3g5ndsanm" path="res://Scene/map1.tscn" id="10_afeoy"]
 [ext_resource type="PackedScene" uid="uid://dk2nconwmeh1j" path="res://Character/enemy2.tscn" id="11_p8mhe"]
 [ext_resource type="PackedScene" uid="uid://g4oued1wai53" path="res://Item/wall.tscn" id="12_jsk2b"]
+[ext_resource type="PackedScene" uid="uid://bpr3pdnryl2hv" path="res://ui/PauseUI.tscn" id="13_lhi3h"]
+[ext_resource type="PackedScene" uid="uid://bjmn2368p5yha" path="res://ui/mobile_phone_ui.tscn" id="14_ey33r"]
 
 [sub_resource type="Curve2D" id="Curve2D_ngjeh"]
 _data = {
@@ -38,7 +40,6 @@ script = ExtResource("1_i1gwp")
 position = Vector2(65, 127)
 
 [node name="StageTimer" parent="." instance=ExtResource("4_knqoj")]
-wait_time = 5.0
 
 [node name="ChageStage" parent="." instance=ExtResource("5_oojy8")]
 position = Vector2(5710, 223)
@@ -74,3 +75,8 @@ scale = Vector2(4.4012117, -84.44505)
 [node name="wall2" parent="." instance=ExtResource("12_jsk2b")]
 position = Vector2(5864, 0)
 scale = Vector2(4.4012117, -84.44505)
+
+[node name="PauseUI" parent="." instance=ExtResource("13_lhi3h")]
+
+[node name="MobilePhoneUI" parent="." instance=ExtResource("14_ey33r")]
+z_index = 10
