@@ -38,6 +38,7 @@ script = ExtResource("1_i1gwp")
 position = Vector2(65, 127)
 
 [node name="StageTimer" parent="." instance=ExtResource("4_knqoj")]
+wait_time = 5.0
 
 [node name="ChageStage" parent="." instance=ExtResource("5_oojy8")]
 position = Vector2(5710, 223)

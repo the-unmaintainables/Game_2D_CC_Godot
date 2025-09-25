@@ -2,6 +2,7 @@ extends Node
 
 const TITLE_SCENE = preload("res://ui/title.tscn")
 const STAGE1_SCENE = preload("res://Scene/stage_0.tscn")
+const GAMEOVER_SCENE = preload("res://ui/game_over.tscn")
 const MAX_CHAGE = 5
 
 var stage_score : int
@@ -11,7 +12,11 @@ func _ready() -> void:
 	var signal_manager = get_node("/root/SignalManager")
 	
 	signal_manager.connect("stage_start", self.variable_init)
-	signal_manager.connect("player_timeout", self.variable_init)
+	signal_manager.connect("player_timeout", self.timeout)
+
+# 時間切れになったらゲームオーバー画面へ飛ぶ
+func timeout():
+	load_gameover_scene()
 
 # スコアとタイムの初期化
 func variable_init():
@@ -26,3 +31,7 @@ func load_title_scene():
 # stage1に移動
 func load_stage1_scene():
 	get_tree().change_scene_to_packed(STAGE1_SCENE)
+
+# ゲームオーバーへ移動
+func load_gameover_scene():
+	get_tree().change_scene_to_packed(GAMEOVER_SCENE)
