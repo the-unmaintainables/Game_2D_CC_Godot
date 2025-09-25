@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://xupiaq42h3oi"]
+[gd_scene load_steps=16 format=3 uid="uid://xupiaq42h3oi"]
 
 [ext_resource type="Script" uid="uid://6o70bm1xurb7" path="res://Script/resize.gd" id="1_i1gwp"]
 [ext_resource type="PackedScene" uid="uid://bmbt5kjfdxknr" path="res://Character/player.tscn" id="1_oxiro"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://duaqjjplldnyh" path="res://Character/enemy1.tscn" id="9_ngjeh"]
 [ext_resource type="PackedScene" uid="uid://dl4c3g5ndsanm" path="res://Scene/map1.tscn" id="10_afeoy"]
 [ext_resource type="PackedScene" uid="uid://dk2nconwmeh1j" path="res://Character/enemy2.tscn" id="11_p8mhe"]
+[ext_resource type="PackedScene" uid="uid://g4oued1wai53" path="res://Item/wall.tscn" id="12_jsk2b"]
 
 [sub_resource type="Curve2D" id="Curve2D_ngjeh"]
 _data = {
@@ -43,6 +44,8 @@ position = Vector2(5710, 223)
 Next_Scene = ExtResource("6_e8h51")
 
 [node name="PlayerCamera" parent="." instance=ExtResource("7_oojy8")]
+limit_L = 392.0
+limit_R = 4856.0
 
 [node name="Path_enemy1" parent="." instance=ExtResource("8_e8h51")]
 curve = SubResource("Curve2D_ngjeh")
@@ -62,3 +65,11 @@ scale = Vector2(948.47687, -5.8208528)
 [node name="Path_enemy3" parent="." instance=ExtResource("8_e8h51")]
 curve = SubResource("Curve2D_jsk2b")
 EnemyScene = ExtResource("11_p8mhe")
+
+[node name="wall" parent="." instance=ExtResource("12_jsk2b")]
+position = Vector2(-624, 0)
+scale = Vector2(4.4012117, -84.44505)
+
+[node name="wall2" parent="." instance=ExtResource("12_jsk2b")]
+position = Vector2(5864, 0)
+scale = Vector2(4.4012117, -84.44505)
