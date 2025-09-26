@@ -3,9 +3,6 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var signal_manager = get_node("/root/SignalManager")
-	
-	signal_manager.connect("stage_claer", self.input_init)
 	
 	# スマホでないならUIを消す
 	if GameManager.mouse_ui:
@@ -16,15 +13,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
-# ステージをクリアしたら入力を初期化する
-func input_init():
-	Input.action_release("move_right")
-	Input.action_release("move_left")
-	Input.action_release("jump")
-	Input.action_release("attack")
-	Input.action_release("chage")
-	Input.action_release("pause")
 
 
 func _on_move_right_pressed() -> void:
