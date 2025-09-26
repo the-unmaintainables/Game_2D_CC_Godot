@@ -44,3 +44,17 @@ func _on_attck_button_down() -> void:
 
 func _on_attck_button_up() -> void:
 	Input.action_release("attack")
+
+
+func _on_touch_screen_button_pressed() -> void:
+	Input.action_press("move_right")
+
+func _on_touch_screen_button_released() -> void:
+	Input.action_release("move_right")
+
+
+func _on_touch_screen_button_2_pressed() -> void:
+	Input.action_press("jump")
+
+func _on_touch_screen_button_2_released() -> void:
+	Input.action_release("jump")
