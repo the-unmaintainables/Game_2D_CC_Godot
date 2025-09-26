@@ -6,6 +6,11 @@ func _ready() -> void:
 	var signal_manager = get_node("/root/SignalManager")
 	
 	signal_manager.connect("stage_claer", self.input_init)
+	
+	# スマホでないならUIを消す
+	if GameManager.mouse_ui:
+		print("マウスUI")
+		queue_free()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

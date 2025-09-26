@@ -8,11 +8,35 @@ const MAX_CHAGE = 5
 var stage_score : int
 var stage_time : int
 
+# スマホなのかパソコンなのか
+var touch_ui:bool
+var mouse_ui:bool
+
 func _ready() -> void:
 	var signal_manager = get_node("/root/SignalManager")
 	
 	signal_manager.connect("stage_start", self.variable_init)
 	signal_manager.connect("player_timeout", self.timeout)
+	
+	# タッチするデバイスがあるかどうかでスマホかどうかを判定する
+	if OS.get_name() == "Android" || OS.get_name() == "iOS":
+		print("タッチデバイス → タッチ操作を有効化、マウス操作を無効化")
+		enable_touch_ui()
+		disable_mouse_ui()
+	else:
+		print("PC → マウス操作を有効化、タッチ操作を無効化")
+		enable_mouse_ui()
+		disable_touch_ui()
+
+func enable_touch_ui():
+	touch_ui = true
+func disable_touch_ui():
+	touch_ui = false
+
+func enable_mouse_ui():
+	mouse_ui = true
+func disable_mouse_ui():
+	mouse_ui = false
 
 # 時間切れになったらゲームオーバー画面へ飛ぶ
 func timeout():
