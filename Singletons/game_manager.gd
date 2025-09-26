@@ -20,6 +20,9 @@ func _ready() -> void:
 	
 	var userAgent = str(JavaScriptBridge.get_interface("userAgent"))
 	print(userAgent)
+	var navigator = JavaScriptBridge.get_interface("navigator")
+	userAgent = str(navigator.userAgent)
+	print(userAgent)
 	if userAgent.find("windows nt") != -1:
 		print("「Microsoft Windows」をお使いですね!")
 	elif userAgent.find("android") != -1:
