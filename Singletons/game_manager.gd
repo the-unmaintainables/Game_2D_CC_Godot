@@ -9,8 +9,8 @@ var stage_score : int
 var stage_time : int
 
 # スマホなのかパソコンなのか
-var touch_ui:bool
-var mouse_ui:bool
+var touch_ui : bool
+var mouse_ui : bool
 
 func _ready() -> void:
 	var signal_manager = get_node("/root/SignalManager")
