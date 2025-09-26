@@ -20,6 +20,16 @@ func _ready() -> void:
 	
 	var userAgent = str(JavaScriptBridge.get_interface("userAgent"))
 	print(userAgent)
+	if userAgent.find("windows nt") != -1:
+		print("「Microsoft Windows」をお使いですね!")
+	elif userAgent.find("android") != -1:
+		print("「Android」をお使いですね!");
+	elif userAgent.find("iphone") != -1 || userAgent.find("ipad") != -1:
+		print("「iOS」をお使いですね!");
+	elif userAgent.find("mac os x") != -1:
+		print("「macOS」をお使いですね!");
+	else:
+		print("何をお使いなのですか?");
 	# タッチするデバイスがあるかどうかでスマホかどうかを判定する
 	if OS.get_name() == "Android" || OS.get_name() == "iOS":
 		print("タッチデバイス → タッチ操作を有効化、マウス操作を無効化")
