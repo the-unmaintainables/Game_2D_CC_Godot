@@ -22,7 +22,7 @@ func _ready() -> void:
 	var navigator = JavaScriptBridge.get_interface("navigator")
 	var userAgent = str(navigator.userAgent).to_lower()
 	print(userAgent)
-	var is_pc
+	var is_pc = true
 	if userAgent.find("windows nt") != -1:
 		print("「Microsoft Windows」をお使いですね!")
 		is_pc = true
@@ -47,6 +47,9 @@ func _ready() -> void:
 		print("PC → マウス操作を有効化、タッチ操作を無効化")
 		enable_mouse_ui()
 		disable_touch_ui()
+		var ev_click = InputEventMouseButton.new()
+		ev_click.button_index = MOUSE_BUTTON_LEFT
+		InputMap.action_add_event("attack", ev_click)
 
 func enable_touch_ui():
 	touch_ui = true
