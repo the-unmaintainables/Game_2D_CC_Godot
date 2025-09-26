@@ -18,23 +18,28 @@ func _ready() -> void:
 	signal_manager.connect("stage_start", self.variable_init)
 	signal_manager.connect("player_timeout", self.timeout)
 	
-	var userAgent = str(JavaScriptBridge.get_interface("userAgent"))
-	print(userAgent)
+	
 	var navigator = JavaScriptBridge.get_interface("navigator")
-	userAgent = str(navigator.userAgent)
+	var userAgent = str(navigator.userAgent).to_lower()
 	print(userAgent)
+	var is_pc
 	if userAgent.find("windows nt") != -1:
 		print("「Microsoft Windows」をお使いですね!")
+		is_pc = true
 	elif userAgent.find("android") != -1:
 		print("「Android」をお使いですね!");
+		is_pc = false
 	elif userAgent.find("iphone") != -1 || userAgent.find("ipad") != -1:
 		print("「iOS」をお使いですね!");
+		is_pc = false
 	elif userAgent.find("mac os x") != -1:
 		print("「macOS」をお使いですね!");
+		is_pc = true
 	else:
-		print("何をお使いなのですか?");
-	# タッチするデバイスがあるかどうかでスマホかどうかを判定する
-	if OS.get_name() == "Android" || OS.get_name() == "iOS":
+		is_pc = true
+	
+	# スマホなら
+	if not is_pc:
 		print("タッチデバイス → タッチ操作を有効化、マウス操作を無効化")
 		enable_touch_ui()
 		disable_mouse_ui()
