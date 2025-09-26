@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 	signal_manager.connect("stage_start", self.variable_init)
 	signal_manager.connect("player_timeout", self.timeout)
-	signal_manager.connect("stage_claer", self.input_init)
+	signal_manager.connect("stage_clear", self.input_init)
 	
 	
 	var navigator = JavaScriptBridge.get_interface("navigator")
@@ -64,6 +64,7 @@ func disable_mouse_ui():
 
 # ステージをクリアしたら入力を初期化する
 func input_init():
+	print("input_init")
 	Input.action_release("move_right")
 	Input.action_release("move_left")
 	Input.action_release("jump")
