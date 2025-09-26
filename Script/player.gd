@@ -90,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	# 発射ボタンが押されたら弾を発射する
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") && GameManager.mouse_ui:
 		fire_bullet()
 	
 	# チャージボタンが押されたら
