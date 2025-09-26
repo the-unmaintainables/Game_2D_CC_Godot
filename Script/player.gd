@@ -34,6 +34,9 @@ func _on_player_miss():
 	print("Play miss")
 	position = default_position
 	hp = 1
+	# チャージ数の初期化
+	current_chage = 0
+	SignalManager.update_chage.emit(current_chage)
 
 # 時間切れ
 func _on_player_timeout():
