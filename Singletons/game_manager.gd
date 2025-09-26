@@ -18,7 +18,7 @@ func _ready() -> void:
 	signal_manager.connect("stage_start", self.variable_init)
 	signal_manager.connect("player_timeout", self.timeout)
 	
-	var userAgent = JavaScriptBridge.get_interface("userAgent")
+	var userAgent = str(JavaScriptBridge.get_interface("userAgent"))
 	print(userAgent)
 	# タッチするデバイスがあるかどうかでスマホかどうかを判定する
 	if OS.get_name() == "Android" || OS.get_name() == "iOS":
