@@ -130,6 +130,9 @@ func fire_bullet():
 	# 現在のシーンに弾を追加
 	self.get_parent().add_child(bullet_instance)
 	
+	# 弾が出たら音も出す
+	$ShotSound.play()
+	
 # ダメージを受ける。死亡処理も記述
 func damage(amount, penetration=false):
 	# チャージしていないときは無敵

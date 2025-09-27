@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bmbt5kjfdxknr"]
+[gd_scene load_steps=17 format=3 uid="uid://bmbt5kjfdxknr"]
 
 [ext_resource type="Script" uid="uid://bifdrahfhj7do" path="res://Script/player.gd" id="1_3c51y"]
 [ext_resource type="PackedScene" uid="uid://06v2tskuo44s" path="res://Item/bullet1.tscn" id="2_2brrg"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://feir5yg1rl1s" path="res://Sprite/S_kirakira3.png" id="6_crn8y"]
 [ext_resource type="Texture2D" uid="uid://btiobrj3734vf" path="res://Sprite/split_0_2.png" id="6_xaqyh"]
 [ext_resource type="Texture2D" uid="uid://cqa23nsiss4h3" path="res://Sprite/S_kirakira4.png" id="7_8qfpo"]
+[ext_resource type="AudioStream" uid="uid://cl16wwpr3g8uu" path="res://Sound/shot1.mp3" id="11_ur0x2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3c51y"]
 size = Vector2(12.758614, 15.604469)
@@ -129,6 +130,9 @@ texture_filter = 1
 scale = Vector2(0.06, 0.06)
 sprite_frames = SubResource("SpriteFrames_3c51y")
 animation = &"idle"
+
+[node name="ShotSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_ur0x2")
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="ChageTimer" to="." method="_on_chage_timer_timeout"]
