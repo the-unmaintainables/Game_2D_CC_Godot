@@ -39,6 +39,7 @@ func _ready() -> void:
 	else:
 		is_pc = true
 	
+	#is_pc = false
 	# スマホなら
 	if not is_pc:
 		print("タッチデバイス → タッチ操作を有効化、マウス操作を無効化")

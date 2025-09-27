@@ -47,6 +47,7 @@ scale = Vector2(0.184, 0.184)
 texture_normal = ExtResource("4_1n0qn")
 
 [node name="pause" type="TouchScreenButton" parent="CanvasLayer"]
+process_mode = 3
 position = Vector2(1752, 152)
 scale = Vector2(0.184, 0.184)
 texture_normal = ExtResource("5_fr58x")

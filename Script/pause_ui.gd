@@ -9,15 +9,17 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-
-func  _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause"):
+		print("pauseアクションの受け取り")
 		# ポーズ状態を切り替える
 		get_tree().paused = not get_tree().paused
 		
 		# オーバーレイの表示/非表示を切り替える
 		$PauseOverlay.visible = get_tree().paused
+	pass
+
+func  _input(event: InputEvent) -> void:
+	pass
 
 func _on_start_button_pressed() -> void:
 	# ポーズの解除
