@@ -80,7 +80,7 @@ func _check_javascript_property_existence(property_path: String) -> bool:
 	# JavaScriptコードを文字列として定義
 	# '!!' (二重否定) は、値が null, undefined, 0, false, '' などである場合に false を返し、
 	# それ以外の場合（存在する場合）に true を返すために使用される [1]
-	var js_code = "(!!(" + property_path + "))"
+	var js_code = "(!!(typeof document.documentElement.ontouchend!== 'undefined'))"
 	print(js_code)
 	JavaScriptBridge.eval("console.log(" + js_code + ");")
 	# JavaScriptBridge.eval() を使用してコードを実行
@@ -88,8 +88,6 @@ func _check_javascript_property_existence(property_path: String) -> bool:
 	# Godot 4.xでは、evalの戻り値はVariant型（この場合ブール値）になる
 	var result = JavaScriptBridge.eval(js_code, true)
 	print(result)
-	
-	JavaScriptBridge.get_interface("navigator")
 	
 	return result
 
