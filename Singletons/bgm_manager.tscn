@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://h8wxxnaxjkv8"]
+
+[ext_resource type="AudioStream" uid="uid://ca3fa5fxmp5h2" path="res://Sound/8bit-omusubi-bouken_Loop.ogg" id="1_4iuws"]
+[ext_resource type="Script" uid="uid://caxnrex6mhdug" path="res://Singletons/bgm_manager.gd" id="2_bs1lc"]
+
+[node name="BGM_Manager" type="AudioStreamPlayer"]
+stream = ExtResource("1_4iuws")
+parameters/looping = true
+script = ExtResource("2_bs1lc")
