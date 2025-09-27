@@ -24,6 +24,11 @@ func _process(delta: float) -> void:
 func _on_start_button_pressed() -> void:
 	SignalManager.stage_start.emit()
 	GameManager.load_stage1_scene()
+	
+	# Web環境でのみオーディオコンテキストを再開
+	if OS.has_feature("web"):
+		GameManager._resume_web_audio()
+	BGM.play()
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()

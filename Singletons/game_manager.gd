@@ -63,6 +63,27 @@ func enable_mouse_ui():
 func disable_mouse_ui():
 	mouse_ui = false
 
+
+func _resume_web_audio():
+	# Godot 4.3以降、Webでのオーディオ再生はWeb Audio APIに依存している [1]
+	# そのため、ユーザー操作があった際にオーディオコンテキストをresume()する必要がある [2]
+	var js_code = """
+		// Godotが公開しているEngineオブジェクトにアクセスし、オーディオコンテキストを取得
+		if (typeof Engine!== 'undefined' && Engine.get_audio_context) {
+			var audio_context = Engine.get_audio_context();
+			// 状態が'suspended'（停止中）であれば再開を試みる
+			if (audio_context && audio_context.state === 'suspended') {
+				audio_context.resume().then(function() {
+					console.log('Web AudioContext resumed by user gesture.');
+				}).catch(function(error) {
+					console.error('Failed to resume AudioContext:', error);
+				});
+			}
+		}
+	"""
+	# JavaScriptBridgeを使用してJavaScriptコードを実行
+	JavaScriptBridge.eval(js_code)
+
 # ステージをクリアしたら入力を初期化する
 func input_init():
 	print("input_init")
