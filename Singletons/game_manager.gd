@@ -20,26 +20,37 @@ func _ready() -> void:
 	signal_manager.connect("stage_clear", self.input_init)
 	
 	
-	var navigator = JavaScriptBridge.get_interface("navigator")
-	var userAgent = str(navigator.userAgent).to_lower()
-	print(userAgent)
 	var is_pc = true
-	if userAgent.find("windows nt") != -1:
-		print("「Microsoft Windows」をお使いですね!")
-		is_pc = true
-	elif userAgent.find("android") != -1:
-		print("「Android」をお使いですね!");
-		is_pc = false
-	elif userAgent.find("iphone") != -1 || userAgent.find("ipad") != -1:
-		print("「iOS」をお使いですね!");
-		is_pc = false
-	elif userAgent.find("mac os x") != -1:
-		print("「macOS」をお使いですね!");
-		is_pc = true
-	else:
-		is_pc = true
+	#var navigator = JavaScriptBridge.get_interface("navigator")
+	#var userAgent = str(navigator.userAgent).to_lower()
+	#print(userAgent)
+	
+	#if userAgent.find("windows nt") != -1:
+		#print("「Microsoft Windows」をお使いですね!")
+		#is_pc = true
+	#elif userAgent.find("android") != -1:
+		#print("「Android」をお使いですね!");
+		#is_pc = false
+	#elif userAgent.find("iphone") != -1 || userAgent.find("ipad") != -1:
+		#print("「iOS」をお使いですね!");
+		#is_pc = false
+	#elif userAgent.find("mac os x") != -1:
+		#print("「macOS」をお使いですね!");
+		#is_pc = true
+	#else:
+		#is_pc = true
 	
 	#is_pc = false
+	
+	var has_touch_end = _check_javascript_property_existence("document.ontouchend")
+	
+	if has_touch_end:
+		is_pc = true
+		print("JavaScriptのdocumentオブジェクトは 'ontouchend' イベントをサポートしています。")
+	else:
+		is_pc = false
+		print("JavaScriptのdocumentオブジェクトは 'ontouchend' イベントをサポートしていません。")
+	
 	# スマホなら
 	if not is_pc:
 		print("タッチデバイス → タッチ操作を有効化、マウス操作を無効化")
@@ -64,6 +75,25 @@ func disable_mouse_ui():
 	mouse_ui = false
 
 
+# JavaScriptのオブジェクト/プロパティの存在をチェックする関数
+func _check_javascript_property_existence(property_path: String) -> bool:
+	# JavaScriptコードを文字列として定義
+	# '!!' (二重否定) は、値が null, undefined, 0, false, '' などである場合に false を返し、
+	# それ以外の場合（存在する場合）に true を返すために使用される [1]
+	var js_code = "(!!(" + property_path + "))"
+	print(js_code)
+	JavaScriptBridge.eval("console.log(" + js_code + ");")
+	# JavaScriptBridge.eval() を使用してコードを実行
+	# 第二引数を true に設定すると、JavaScriptの戻り値をGDScriptに返す (デフォルトは false)
+	# Godot 4.xでは、evalの戻り値はVariant型（この場合ブール値）になる
+	var result = JavaScriptBridge.eval(js_code, true)
+	print(result)
+	
+	JavaScriptBridge.get_interface("navigator")
+	
+	return result
+
+# javascriptで音楽が再生できるようにする
 func _resume_web_audio():
 	# Godot 4.3以降、Webでのオーディオ再生はWeb Audio APIに依存している [1]
 	# そのため、ユーザー操作があった際にオーディオコンテキストをresume()する必要がある [2]
