@@ -45,10 +45,10 @@ func _ready() -> void:
 	var has_touch_end = _check_javascript_property_existence("document.ontouchend")
 	
 	if has_touch_end:
-		is_pc = true
+		is_pc = false
 		print("JavaScriptのdocumentオブジェクトは 'ontouchend' イベントをサポートしています。")
 	else:
-		is_pc = false
+		is_pc = true
 		print("JavaScriptのdocumentオブジェクトは 'ontouchend' イベントをサポートしていません。")
 	
 	# スマホなら
