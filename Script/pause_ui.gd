@@ -18,9 +18,6 @@ func _process(delta: float) -> void:
 		$PauseOverlay.visible = get_tree().paused
 	pass
 
-func  _input(event: InputEvent) -> void:
-	pass
-
 func _on_start_button_pressed() -> void:
 	# ポーズの解除
 	get_tree().paused = not get_tree().paused
