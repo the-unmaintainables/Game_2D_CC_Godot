@@ -8,9 +8,18 @@ const BASE_HEIGHT = 1080
 func _ready() -> void:
 	get_tree().paused = false
 	
-	# 画面サイズが変更されたときに_on_viewport_size_changed関数を呼び出す
-	#get_viewport().size_changed.connect(_on_viewport_size_changed)
-	#_on_viewport_size_changed() # 初期サイズに合わせて一度実行
+	
+	pass # Replace with function body.
+
+func _on_login(result: LoginResult):
+	print("Login")
+	print(result)
+
+func _on_PlayFab_login_success(user_id):
+	print("ログイン成功: %s" % user_id)
+
+func _on_PlayFab_login_error(error):
+	print("ログイン失敗: %s" % error)
 
 func on_timer_timeout():
 	SignalManager.stage_start.emit()
