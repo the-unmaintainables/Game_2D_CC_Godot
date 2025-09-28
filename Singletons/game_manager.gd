@@ -17,12 +17,13 @@ func _ready() -> void:
 	
 	signal_manager.connect("stage_start", self.variable_init)
 	signal_manager.connect("player_timeout", self.timeout)
-	signal_manager.connect("stage_clear", self.input_init)
+	signal_manager.connect("stage_start", self.input_init)
 	
 	
 	var is_pc = true
-	
-	var has_touch_end = _check_javascript_property_existence("document.ontouchend")
+	var has_touch_end = false
+	if OS.get_name() == "Web":
+		has_touch_end = _check_javascript_property_existence("document.ontouchend")
 	
 	if has_touch_end:
 		is_pc = false
