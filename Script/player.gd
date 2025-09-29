@@ -94,17 +94,16 @@ func _physics_process(delta: float) -> void:
 		fire_bullet()
 	
 	# チャージボタンが押されたら
-	if Input.is_action_pressed("chage"):
+	if Input.is_action_just_pressed("chage"):
 		# タイマーがまだ動いていないなら開始
 		if chage_timer.is_stopped():
 			chage_timer.start()
 			$kirakira1.hide()
 			$kirakira2.hide()
-	else:
-		# ボタンが話されたらタイマーを停止
-		chage_timer.stop()
-		$kirakira1.show()
-		$kirakira2.show()
+		else: # タイマーが動いているならチャージをやめる
+			chage_timer.stop()
+			$kirakira1.show()
+			$kirakira2.show()
 
 # 弾を打つ処理
 func fire_bullet():
