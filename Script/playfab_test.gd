@@ -7,7 +7,6 @@ func _ready() -> void:
 	PlayFabManager.client.connect("logged_in", Callable(self, "_on_login_success"))
 	PlayFabManager.client.connect("api_error", Callable(self, "_on_login_error"))
 	PlayFabManager.client.connect("server_error", Callable(self, "_on_login_error"))
-	
 	PlayFabManager.client.login_anonymous()
 	#add_child(playfab)
 	#playfab.login_anonymous()

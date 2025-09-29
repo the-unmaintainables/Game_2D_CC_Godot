@@ -26,13 +26,13 @@ scale = Vector2(0.184, 0.184)
 texture_normal = ExtResource("2_u4bum")
 
 [node name="jump" type="TouchScreenButton" parent="CanvasLayer"]
-position = Vector2(263.99997, 888)
+position = Vector2(1648, 800)
 rotation = -1.5707964
 scale = Vector2(0.184, 0.184)
 texture_normal = ExtResource("2_u4bum")
 
 [node name="move_right" type="TouchScreenButton" parent="CanvasLayer"]
-position = Vector2(408.00003, 864)
+position = Vector2(320.00003, 864)
 scale = Vector2(0.18394336, 0.18394336)
 texture_normal = ExtResource("2_u4bum")
 
@@ -42,7 +42,7 @@ scale = Vector2(0.184, 0.184)
 texture_normal = ExtResource("3_fr58x")
 
 [node name="attack" type="TouchScreenButton" parent="CanvasLayer"]
-position = Vector2(1280, 823.99994)
+position = Vector2(1408, 823.99994)
 scale = Vector2(0.184, 0.184)
 texture_normal = ExtResource("4_1n0qn")
 
