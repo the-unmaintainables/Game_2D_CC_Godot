@@ -4,3 +4,5 @@
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_romgu")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
