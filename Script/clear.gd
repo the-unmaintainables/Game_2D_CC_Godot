@@ -1,16 +1,18 @@
 extends Node2D
 
-# 基準となる画面サイズ（デザイン時の解像度）
-const BASE_WIDTH = 1920
-const BASE_HEIGHT = 1080
+const Playfab = preload("res://addons/godot-playfab/PlayFab.gd")
+const LEADERBOARD_NAME = "TestRanking"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$TextureRect/TimeLabel.text = str(GameManager.stage_time)
 	$TextureRect/ScoreLabel.text = str(GameManager.stage_score)
-	# 画面サイズが変更されたときに_on_viewport_size_changed関数を呼び出す
-	#get_viewport().size_changed.connect(_on_viewport_size_changed)
-	#_on_viewport_size_changed() # 初期サイズに合わせて一度実行
+	
+	print("Playfabテスト")
+	PlayFabManager.client.connect("logged_in", Callable(self, "_on_login_success"))
+	PlayFabManager.client.connect("api_error", Callable(self, "_on_login_error"))
+	PlayFabManager.client.connect("server_error", Callable(self, "_on_server_error"))
+	PlayFabManager.client.login_anonymous()
 	pass # Replace with function body.
 
 
@@ -23,18 +25,57 @@ func _on_title_button_pressed() -> void:
 	GameManager.load_title_scene()
 
 
-func _on_viewport_size_changed():
-	# 現在のビューポートのサイズを取得
-	var current_size = get_viewport().size
+
+func _on_login_success(result: LoginResult):
+	print("Login")
+	print(result)
 	
-	# 幅と高さの比率を計算
-	var scale_x = current_size.x / float(BASE_WIDTH)
-	var scale_y = current_size.y / float(BASE_HEIGHT)
+	await change_name("test01")
+	await submit_score(GameManager.stage_score, result.SessionTicket)
+
+func change_name(name):
+	var body = {
+		"DisplayName": name
+	}
+	PlayFabManager.client.post_dict_auth(body,"/Client/UpdateUserTitleDisplayName",Playfab.AUTH_TYPE.SESSION_TICKET)
 	
-	# どちらか小さい方の比率をUI全体のスケールとして使用
-	var scale_factor = min(scale_x, scale_y)
+
+func submit_score(new_score: int, session_ticket: String):
+	var body = {
+		 "Statistics": [
+			{"StatisticName": LEADERBOARD_NAME, "Value": new_score}
+		]
+	}
 	
-	# CanvasLayer全体のスケールを更新
-	set_scale(Vector2(scale_factor, scale_factor))
-	print(scale_x)
-	print(scale_y)
+	PlayFabManager.client.post_dict_auth(body,"/Client/UpdatePlayerStatistics",Playfab.AUTH_TYPE.SESSION_TICKET, Callable(self, "input_score"))
+
+
+func fetch_leaderboard():
+	var statistic_name = LEADERBOARD_NAME  # PlayFab側で設定した統計名
+	var max_results = 10
+	var body = {
+		"StatisticName": statistic_name, "StartPosition": 0, "MaxResultsCount": max_results
+	}
+	
+	PlayFabManager.client.post_dict_auth(body,"/Client/GetLeaderboard", Playfab.AUTH_TYPE.SESSION_TICKET, Callable(self, "_on_PlayFab_leaderboard_success"))
+	
+
+func _on_PlayFab_leaderboard_success(result):
+	print("ランキング")
+	print(result)
+	var entries = result["data"]["Leaderboard"]
+	for entry in entries:
+		var name = entry["PlayFabId"]
+		var score = entry["StatValue"]
+		var rank = entry["Position"]
+		print("%d位: %s - %d点" % [rank + 1, name, score])
+
+func input_score(result):
+	print("値の追加")
+
+func _on_login_error(error):
+	print("ログイン失敗")
+	print(error.error)
+
+func _on_server_error(error):
+	print("サーバーエラー")
