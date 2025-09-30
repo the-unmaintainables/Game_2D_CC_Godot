@@ -18,8 +18,16 @@ func _on_login_success(result: LoginResult):
 	print("Login")
 	print(result)
 	
-	#submit_score(2000, result.SessionTicket)
-	fetch_leaderboard()
+	await change_name("test00")
+	await submit_score(2000, result.SessionTicket)
+	await fetch_leaderboard()
+
+func change_name(name):
+	var body = {
+		"DisplayName": name
+	}
+	PlayFabManager.client.post_dict_auth(body,"/Client/UpdateUserTitleDisplayName",Playfab.AUTH_TYPE.SESSION_TICKET)
+	
 
 func submit_score(new_score: int, session_ticket: String):
 	var body = {

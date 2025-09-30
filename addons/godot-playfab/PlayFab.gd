@@ -155,7 +155,7 @@ func _post(body: JsonSerializable, path: String, callback: Callable, additional_
 # @param auth_type: PlayFab.AUTH_TYPE				- One of `PlayFab.AUTH_TYPE`
 # @param callback: Callable							- A callback which will be called once the request **succeeds**
 # @param additional_headers: Dictionary (optional)	- Additional headers to be sent with the request
-func post_dict_auth(body: Dictionary, path: String, auth_type, callback: Callable, additional_headers: Dictionary = {}):
+func post_dict_auth(body: Dictionary, path: String, auth_type, callback: Callable = func(result):pass, additional_headers: Dictionary = {}):
 	_add_auth_headers(additional_headers, auth_type)
 	_http_request(HTTPClient.METHOD_POST, body, path, callback, additional_headers)
 
