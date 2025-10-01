@@ -22,13 +22,13 @@ func _on_api_error(result):
 	error = true
 	print("api_error")
 	# 画面ポーズの解除
-	get_tree().paused = true
+	get_tree().paused = false
 # PlayFabのリクエストがサーバーエラーの場合
 func _on_server_error(result):
 	error = true
 	print("server_error")
 	# 画面ポーズの解除
-	get_tree().paused = true
+	get_tree().paused = false
 
 # Titleボタンが押されたらタイトルへ
 func _on_exit_button_pressed() -> void:
@@ -38,7 +38,7 @@ func _on_exit_button_pressed() -> void:
 # 記録を登録するボタンが押されたら
 func _on_submit_button_pressed() -> void:
 	# スコアが記録されるまでは画面をポーズ
-	get_tree().paused = false
+	get_tree().paused = true
 	
 	# ログインでエラーでなければ実行
 	if !error:
@@ -71,4 +71,4 @@ func submit_score(new_score: int):
 func sucess_submit_socre(result):
 	print("スコアを記録できました")
 	# 画面ポーズの解除
-	get_tree().paused = true
+	get_tree().paused = false
