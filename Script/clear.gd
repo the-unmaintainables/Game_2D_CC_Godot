@@ -8,11 +8,11 @@ func _ready() -> void:
 	$TextureRect/TimeLabel.text = str(GameManager.stage_time)
 	$TextureRect/ScoreLabel.text = str(GameManager.stage_score)
 	
-	print("Playfabテスト")
+	#print("Playfabテスト")
 	PlayFabManager.client.connect("logged_in", Callable(self, "_on_login_success"))
 	PlayFabManager.client.connect("api_error", Callable(self, "_on_login_error"))
 	PlayFabManager.client.connect("server_error", Callable(self, "_on_server_error"))
-	PlayFabManager.client.login_anonymous()
+	#PlayFabManager.client.login_anonymous()
 	pass # Replace with function body.
 
 
@@ -20,9 +20,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
+const AddValue_SCENE = preload("res://ui/AddValueUI.tscn")
 func _on_title_button_pressed() -> void:
-	GameManager.load_title_scene()
+	#GameManager.load_title_scene()
+	get_tree().change_scene_to_packed(AddValue_SCENE)
 
 
 

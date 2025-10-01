@@ -44,9 +44,9 @@ vertical_alignment = 1
 
 [node name="TileTexture" type="TextureRect" parent="TextureRect"]
 layout_mode = 0
-offset_left = 694.99994
+offset_left = 698.0
 offset_top = 831.99994
-offset_right = 2231.0
+offset_right = 2234.0
 offset_bottom = 1856.0
 scale = Vector2(0.37051237, 0.25815007)
 texture = ExtResource("3_xuvor")
