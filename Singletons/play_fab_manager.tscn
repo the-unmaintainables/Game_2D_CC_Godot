@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8iifvlrtcu31"]
+
+[ext_resource type="Script" uid="uid://7pvypfwko2if" path="res://addons/godot-playfab/PlayFabManager.gd" id="1_crq4c"]
+
+[node name="PlayFabManager" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_crq4c")

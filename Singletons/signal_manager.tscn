@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://birv6m36nj2l2"]
+
+[ext_resource type="Script" uid="uid://sgpfrkxrchx5" path="res://Singletons/signal_manager.gd" id="1_x6ij2"]
+
+[node name="signal_manager" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_x6ij2")
