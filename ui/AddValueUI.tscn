@@ -107,3 +107,5 @@ text = "Save Your Score?"
 
 [connection signal="pressed" from="PauseOverlay/ExitTexture/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="PauseOverlay/SubmitTexture2/SubmitButton" to="." method="_on_submit_button_pressed"]
+[connection signal="focus_entered" from="PauseOverlay/PlayerName" to="." method="_on_player_name_focus_entered"]
+[connection signal="focus_exited" from="PauseOverlay/PlayerName" to="." method="_on_player_name_focus_exited"]
