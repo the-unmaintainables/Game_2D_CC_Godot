@@ -17,10 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+PlayFabManager="*res://Singletons/play_fab_manager.tscn"
 GameManager="*res://Singletons/game_manager.tscn"
 SignalManager="*res://Singletons/signal_manager.tscn"
 BGM="*res://Singletons/bgm_manager.tscn"
-PlayFabManager="*res://Singletons/play_fab_manager.tscn"
 
 [display]
 

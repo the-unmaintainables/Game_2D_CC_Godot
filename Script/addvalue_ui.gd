@@ -8,32 +8,30 @@ const Playfab = preload("res://addons/godot-playfab/PlayFab.gd")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	PlayFabManager.client.connect("logged_in", Callable(self, "_on_login_success"))
-	PlayFabManager.client.connect("api_error", Callable(self, "_on_api_error"))
-	PlayFabManager.client.connect("server_error", Callable(self, "_on_server_error"))
-	# 匿名ログインする
-	PlayFabManager.client.login_anonymous()
-	pass # Replace with function body.
+	#PlayFabManager.client.connect("logged_in", Callable(self, "_on_login_success"))
+	#PlayFabManager.client.connect("api_error", Callable(self, "_on_api_error"))
+	#PlayFabManager.client.connect("server_error", Callable(self, "_on_server_error"))
+	## 匿名ログインする
+	#PlayFabManager.client.login_anonymous()
+	pass
 
 # ログイン成功時の関数
 func _on_login_success(result):
 	print("ログイン成功")
 	was_login = true
+	# すでにボタンが押されていたらもう一度ボタンの処理を行う
 	if button_pressed:
 		_on_submit_button_pressed()
-	
-	pass
+
 # PlayFabのリクエストがAPIエラーの場合
 func _on_api_error(result):
 	error = true
-	was_login = true
 	print("api_error")
 	# 画面ポーズの解除
 	get_tree().paused = false
 # PlayFabのリクエストがサーバーエラーの場合
 func _on_server_error(result):
 	error = true
-	was_login = true
 	print("server_error")
 	# 画面ポーズの解除
 	get_tree().paused = false
@@ -41,7 +39,6 @@ func _on_server_error(result):
 # Titleボタンが押されたらタイトルへ
 func _on_exit_button_pressed() -> void:
 	GameManager.load_title_scene()
-	pass # Replace with function body.
 
 # 記録を登録するボタンが押されたら
 func _on_submit_button_pressed() -> void:
@@ -49,7 +46,7 @@ func _on_submit_button_pressed() -> void:
 	get_tree().paused = true
 	# ボタンもポーズしてるから複数回押されない
 	# ログインし終わるまで待機
-	if was_login:
+	if GameManager.was_login:
 		# ログインでエラーでなければ実行
 		if !error:
 			print($PauseOverlay/PlayerName.text)
@@ -58,7 +55,11 @@ func _on_submit_button_pressed() -> void:
 			# スコアをリーダーボードに登録する
 			submit_score(GameManager.stage_score)
 	else:
-		button_pressed = true
+		## ログインできていないならボタンを押したことを記録する
+		#button_pressed = true
+		# 始めにログインすることにしたのでログインできていないなら登録できない
+		# 登録できませんみたいなポップアップを出す
+		pass
 	
 	print("ボタン処理の終了")
 	

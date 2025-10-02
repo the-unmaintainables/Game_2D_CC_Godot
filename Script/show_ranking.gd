@@ -3,16 +3,24 @@ extends Node2D
 const Playfab = preload("res://addons/godot-playfab/PlayFab.gd")
 const LEADERBOARD_NAME = "TestRanking"
 
+# ランキング項目シーン
+const RANK_ENTRY_SCENE = preload("res://ui/rank_entry.tscn")
+# ランキング項目を格納する
+@onready var rank_list_container: VBoxContainer = $CanvasLayer/ScrollContainer/VBoxContainer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	PlayFabManager.client.connect("logged_in", Callable(self, "_on_login_success"))
-	PlayFabManager.client.connect("api_error", Callable(self, "_on_login_error"))
-	PlayFabManager.client.connect("server_error", Callable(self, "_on_server_error"))
-	PlayFabManager.client.login_anonymous()
+	#PlayFabManager.client.connect("logged_in", Callable(self, "_on_login_success"))
+	#PlayFabManager.client.connect("api_error", Callable(self, "_on_login_error"))
+	#PlayFabManager.client.connect("server_error", Callable(self, "_on_server_error"))
+	#PlayFabManager.client.login_anonymous()
+	
+	fetch_leaderboard()
+	pass
 	
 func _on_login_success(result: LoginResult):
 	print("Login")
-	fetch_leaderboard()
+	
 
 func fetch_leaderboard():
 	var statistic_name = LEADERBOARD_NAME  # PlayFab側で設定した統計名
@@ -31,6 +39,20 @@ func _on_PlayFab_leaderboard_success(result):
 	for entry in entries:
 		var name = entry["DisplayName"]
 		var score = entry["StatValue"]
-		var rank = entry["Position"]
-		print("%d位: %s - %d点" % [rank + 1, name, score])
-		$CanvasLayer/RankingLabel.text += "%d位: %s - %d点\n" % [rank + 1, name, score]
+		var rank = entry["Position"] + 1
+		print("%d位: %s - %d点" % [rank, name, score])
+		#$CanvasLayer/RankingLabel.text += "%d位: %s - %d点\n" % [rank, name, score]
+		rank = "%3d" % rank
+		score = "%d" % score
+		# カスタムシーンを作成
+		var rank_entry_ui = RANK_ENTRY_SCENE.instantiate()
+		# カスタムシーンのLabelに値を設定
+		rank_entry_ui.get_node("RankLabel").text = str(rank)
+		rank_entry_ui.get_node("NameLabel").text = name
+		rank_entry_ui.get_node("ScoreLabel").text = str(score)
+		# コンテナに追加
+		rank_list_container.add_child(rank_entry_ui)
+
+# 押したらタイトルへ戻る
+func _on_button_pressed() -> void:
+	GameManager.load_title_scene()

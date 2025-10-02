@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce2pil75c8cof"]
+
+[ext_resource type="Theme" uid="uid://b6yfl8n2aao2j" path="res://Theme/theme1.tres" id="1_txtbd"]
+
+[node name="RankEntry" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RankLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_right = 352.0
+offset_bottom = 64.0
+theme = ExtResource("1_txtbd")
+text = "1"
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 730.0
+offset_right = 986.0
+offset_bottom = 64.0
+theme = ExtResource("1_txtbd")
+text = "name"
+
+[node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1274.0
+offset_right = 1530.0
+offset_bottom = 64.0
+theme = ExtResource("1_txtbd")
+text = "1000"

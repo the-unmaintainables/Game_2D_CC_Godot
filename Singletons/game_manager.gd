@@ -1,8 +1,12 @@
 extends Node
 
+var was_login = false # PlayFabのログインしているか
+
 const TITLE_SCENE = preload("res://ui/title.tscn")
 const STAGE1_SCENE = preload("res://Scene/stage_0.tscn")
 const GAMEOVER_SCENE = preload("res://ui/game_over.tscn")
+const RANKING_SCENE = preload("res://ui/show_ranking.tscn")
+
 const MAX_CHAGE = 5
 
 var stage_score : int
@@ -19,7 +23,14 @@ func _ready() -> void:
 	signal_manager.connect("player_timeout", self.timeout)
 	signal_manager.connect("stage_start", self.input_init)
 	
+	# ゲームが始まったらPlayFabに匿名ログインして準備しておく
+	PlayFabManager.client.connect("logged_in", Callable(self, "_on_login_success"))
+	PlayFabManager.client.connect("api_error", Callable(self, "_on_api_error"))
+	PlayFabManager.client.connect("server_error", Callable(self, "_on_server_error"))
+	# 匿名ログインする
+	PlayFabManager.client.login_anonymous()
 	
+	# タッチデバイスがあるかでスマホを判定する
 	var is_pc = true
 	var has_touch_end = false
 	if OS.get_name() == "Web":
@@ -55,6 +66,20 @@ func enable_mouse_ui():
 	mouse_ui = true
 func disable_mouse_ui():
 	mouse_ui = false
+
+# ログイン成功時の関数
+func _on_login_success(result):
+	print("ログイン成功")
+	was_login = true
+	# ログインを通知するシグナル
+	SignalManager.playfab_login.emit()
+# PlayFabのリクエストがAPIエラーの場合
+func _on_api_error(result):
+	print("api_error")
+# PlayFabのリクエストがサーバーエラーの場合
+func _on_server_error(result):
+	print("server_error")
+	PlayFabManager.client.login_anonymous()
 
 
 # JavaScriptのオブジェクト/プロパティの存在をチェックする関数
@@ -114,10 +139,14 @@ func variable_init():
 func load_title_scene():
 	get_tree().change_scene_to_packed(TITLE_SCENE)
 
-# stage1に移動
+# stage1へ移動
 func load_stage1_scene():
 	get_tree().change_scene_to_packed(STAGE1_SCENE)
 
 # ゲームオーバーへ移動
 func load_gameover_scene():
 	get_tree().change_scene_to_packed(GAMEOVER_SCENE)
+
+# ランキングへ移動
+func load_ranking_scene():
+	get_tree().change_scene_to_packed(RANKING_SCENE)

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4h4n0a0dxrlu"]
+[gd_scene load_steps=4 format=3 uid="uid://b4h4n0a0dxrlu"]
 
 [ext_resource type="Script" uid="uid://cpiydr4iwnbap" path="res://Script/show_ranking.gd" id="1_ttptl"]
+[ext_resource type="Texture2D" uid="uid://dnv6ep53hkx7" path="res://Sprite/S_Button1.png" id="2_msk31"]
+[ext_resource type="Theme" uid="uid://b6yfl8n2aao2j" path="res://Theme/theme1.tres" id="3_bmg12"]
 
 [node name="showRanking" type="Node2D"]
 script = ExtResource("1_ttptl")
@@ -20,3 +22,45 @@ offset_left = 172.0
 offset_top = 266.0
 offset_right = 212.0
 offset_bottom = 315.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = 1286.0
+offset_top = 739.0
+offset_right = 1326.0
+offset_bottom = 779.0
+scale = Vector2(11.791968, 9.417762)
+texture = ExtResource("2_msk31")
+expand_mode = 1
+
+[node name="TitleButton" type="Button" parent="CanvasLayer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.4779506
+offset_top = 11.529299
+offset_right = 6.477951
+offset_bottom = 11.529297
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.69217837, 0.44303244)
+
+[node name="Label" type="Label" parent="CanvasLayer/TextureRect/TitleButton"]
+layout_mode = 0
+offset_left = 2.1887162
+offset_top = 9.272707
+offset_right = 322.18872
+offset_bottom = 73.272705
+scale = Vector2(0.11453997, 0.2415341)
+theme = ExtResource("3_bmg12")
+text = "Title"
+
+[connection signal="pressed" from="CanvasLayer/TextureRect/TitleButton" to="." method="_on_button_pressed"]
