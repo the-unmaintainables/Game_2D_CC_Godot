@@ -1,6 +1,8 @@
 extends Node2D
 
 var error = false
+var was_login = false
+var button_pressed = false
 const LEADERBOARD_NAME = "TestRanking"
 const Playfab = preload("res://addons/godot-playfab/PlayFab.gd")
 
@@ -16,16 +18,22 @@ func _ready() -> void:
 # ログイン成功時の関数
 func _on_login_success(result):
 	print("ログイン成功")
+	was_login = true
+	if button_pressed:
+		_on_submit_button_pressed()
+	
 	pass
 # PlayFabのリクエストがAPIエラーの場合
 func _on_api_error(result):
 	error = true
+	was_login = true
 	print("api_error")
 	# 画面ポーズの解除
 	get_tree().paused = false
 # PlayFabのリクエストがサーバーエラーの場合
 func _on_server_error(result):
 	error = true
+	was_login = true
 	print("server_error")
 	# 画面ポーズの解除
 	get_tree().paused = false
@@ -39,14 +47,20 @@ func _on_exit_button_pressed() -> void:
 func _on_submit_button_pressed() -> void:
 	# スコアが記録されるまでは画面をポーズ
 	get_tree().paused = true
+	# ボタンもポーズしてるから複数回押されない
+	# ログインし終わるまで待機
+	if was_login:
+		# ログインでエラーでなければ実行
+		if !error:
+			print($PauseOverlay/PlayerName.text)
+			# 匿名ログインの名前を入力した名前に変える
+			change_name($PauseOverlay/PlayerName.text)
+			# スコアをリーダーボードに登録する
+			submit_score(GameManager.stage_score)
+	else:
+		button_pressed = true
 	
-	# ログインでエラーでなければ実行
-	if !error:
-		print($PauseOverlay/PlayerName.text)
-		# 匿名ログインの名前を入力した名前に変える
-		change_name($PauseOverlay/PlayerName.text)
-		# スコアをリーダーボードに登録する
-		submit_score(GameManager.stage_score)
+	print("ボタン処理の終了")
 	
 # 匿名ログインの名前を入力した名前に変える
 func change_name(name):
