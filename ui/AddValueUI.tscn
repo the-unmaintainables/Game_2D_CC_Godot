@@ -95,6 +95,7 @@ offset_bottom = 499.0
 scale = Vector2(4.5159173, 4.5159173)
 theme = ExtResource("4_ub8xq")
 placeholder_text = "Name"
+max_length = 8
 
 [node name="Label" type="Label" parent="PauseOverlay"]
 offset_left = 311.0

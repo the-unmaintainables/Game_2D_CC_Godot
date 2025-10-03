@@ -52,6 +52,16 @@ func _on_PlayFab_leaderboard_success(result):
 		rank_entry_ui.get_node("ScoreLabel").text = str(score)
 		# コンテナに追加
 		rank_list_container.add_child(rank_entry_ui)
+	
+	# 下までスクロールしきらないので空の要素を追加
+	# カスタムシーンを作成
+	var rank_entry_ui = RANK_ENTRY_SCENE.instantiate()
+	# カスタムシーンのLabelに値を設定
+	rank_entry_ui.get_node("RankLabel").text = ""
+	rank_entry_ui.get_node("NameLabel").text = ""
+	rank_entry_ui.get_node("ScoreLabel").text = ""
+	# コンテナに追加
+	rank_list_container.add_child(rank_entry_ui)
 
 # 押したらタイトルへ戻る
 func _on_button_pressed() -> void:
