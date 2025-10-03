@@ -75,16 +75,19 @@ func sucess_submit_socre(result):
 func _on_title_button_pressed() -> void:
 	GameManager.load_title_scene()
 
+# 共有用の文字列を返す
+func share_words():
+	return "ハイスコア: %d点！ #MyGame" % GameManager.stage_score
 
 func _on_twitter_button_pressed() -> void:
-	var text = "ハイスコア: %d点！ #MyGame" % GameManager.stage_score
-	var url = "https://twitter.com/intent/tweet?text=" + text
+	var text = share_words()
+	var url = "https://twitter.com/intent/tweet?text=" + text.uri_encode()
 	JavaScriptBridge.eval("window.open('%s','_blank')" % url)
 	pass # Replace with function body.
 
 
 func _on_line_button_pressed() -> void:
-	var text = "ハイスコア: %d点！ #MyGame" % GameManager.stage_score
-	var url = "https://line.me/R/msg/text/?" + text
+	var text = share_words()
+	var url = "https://line.me/R/msg/text/?" + text.uri_encode()
 	JavaScriptBridge.eval("window.open('%s','_blank')" % url)
 	pass # Replace with function body.

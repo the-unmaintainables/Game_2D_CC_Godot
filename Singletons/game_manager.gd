@@ -9,8 +9,8 @@ const RANKING_SCENE = preload("res://ui/show_ranking.tscn")
 
 const MAX_CHAGE = 5
 
-var stage_score : int
-var stage_time : int
+var stage_score : int = 0
+var stage_time : int = 0
 
 # スマホなのかパソコンなのか
 var touch_ui : bool
