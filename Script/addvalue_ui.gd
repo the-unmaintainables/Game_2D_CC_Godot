@@ -10,6 +10,8 @@ const Playfab = preload("res://addons/godot-playfab/PlayFab.gd")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# ポップアップを消す
+	$PauseOverlay/PopUp_UI.visible = false
 	pass
 
 # Titleボタンが押されたらタイトルへ
@@ -66,5 +68,23 @@ func sucess_submit_socre(result):
 	
 	# ポップアップをだす。2秒待ってタイトルへ戻る
 	$PauseOverlay/PopUp_UI.visible = true
-	await get_tree().create_timer(2.0).timeout
+	#await get_tree().create_timer(2.0).timeout
+	#GameManager.load_title_scene()
+
+# Titleボタンが押されたらタイトルへ
+func _on_title_button_pressed() -> void:
 	GameManager.load_title_scene()
+
+
+func _on_twitter_button_pressed() -> void:
+	var text = "ハイスコア: %d点！ #MyGame" % GameManager.stage_score
+	var url = "https://twitter.com/intent/tweet?text=" + text
+	JavaScriptBridge.eval("window.open('%s','_blank')" % url)
+	pass # Replace with function body.
+
+
+func _on_line_button_pressed() -> void:
+	var text = "ハイスコア: %d点！ #MyGame" % GameManager.stage_score
+	var url = "https://line.me/R/msg/text/?" + text
+	JavaScriptBridge.eval("window.open('%s','_blank')" % url)
+	pass # Replace with function body.

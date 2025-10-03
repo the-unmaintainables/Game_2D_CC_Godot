@@ -108,9 +108,113 @@ theme = ExtResource("4_ub8xq")
 text = "Save Your Score?"
 
 [node name="PopUp_UI" parent="PauseOverlay" instance=ExtResource("5_m2x3l")]
-visible = false
+
+[node name="Twitter" type="TextureRect" parent="PauseOverlay/PopUp_UI"]
+layout_mode = 0
+offset_left = 62.000183
+offset_top = 762.0
+offset_right = 1598.0002
+offset_bottom = 1786.0
+scale = Vector2(0.37051237, 0.25815007)
+texture = ExtResource("2_m2x3l")
+
+[node name="TwitterButton" type="Button" parent="PauseOverlay/PopUp_UI/Twitter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 223.90102
+offset_top = 289.76523
+offset_right = 223.901
+offset_bottom = 289.76526
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7091894, 0.44424036)
+script = ExtResource("3_1alkk")
+
+[node name="Label" type="Label" parent="PauseOverlay/PopUp_UI/Twitter/TwitterButton"]
+layout_mode = 0
+offset_left = 87.69066
+offset_top = 184.83517
+offset_right = 471.69067
+offset_bottom = 248.83519
+scale = Vector2(3.5773537, 9.384577)
+theme = ExtResource("4_ub8xq")
+theme_override_font_sizes/font_size = 64
+text = "twitter"
+
+[node name="LINE" type="TextureRect" parent="PauseOverlay/PopUp_UI"]
+layout_mode = 0
+offset_left = 564.0001
+offset_top = 762.0
+offset_right = 2100.0
+offset_bottom = 1786.0
+scale = Vector2(0.37051237, 0.25815007)
+texture = ExtResource("2_m2x3l")
+
+[node name="LINEButton" type="Button" parent="PauseOverlay/PopUp_UI/LINE"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 223.90102
+offset_top = 289.76523
+offset_right = 223.901
+offset_bottom = 289.76526
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7091894, 0.44424036)
+script = ExtResource("3_1alkk")
+
+[node name="Label" type="Label" parent="PauseOverlay/PopUp_UI/LINE/LINEButton"]
+layout_mode = 0
+offset_left = 87.69066
+offset_top = 184.83517
+offset_right = 471.69067
+offset_bottom = 248.83519
+scale = Vector2(3.5773537, 9.384577)
+theme = ExtResource("4_ub8xq")
+theme_override_font_sizes/font_size = 64
+text = "LINE"
+
+[node name="Title" type="TextureRect" parent="PauseOverlay/PopUp_UI"]
+layout_mode = 0
+offset_left = 1060.0
+offset_top = 762.0
+offset_right = 2596.0
+offset_bottom = 1786.0
+scale = Vector2(0.37051237, 0.25815007)
+texture = ExtResource("2_m2x3l")
+
+[node name="TitleButton" type="Button" parent="PauseOverlay/PopUp_UI/Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 223.90102
+offset_top = 289.76523
+offset_right = 223.901
+offset_bottom = 289.76526
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7091894, 0.44424036)
+script = ExtResource("3_1alkk")
+
+[node name="Label" type="Label" parent="PauseOverlay/PopUp_UI/Title/TitleButton"]
+layout_mode = 0
+offset_left = 87.69066
+offset_top = 184.83517
+offset_right = 471.69067
+offset_bottom = 248.83519
+scale = Vector2(3.5773537, 9.384577)
+theme = ExtResource("4_ub8xq")
+theme_override_font_sizes/font_size = 64
+text = "Title"
 
 [connection signal="pressed" from="PauseOverlay/ExitTexture/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="PauseOverlay/SubmitTexture2/SubmitButton" to="." method="_on_submit_button_pressed"]
 [connection signal="focus_entered" from="PauseOverlay/PlayerName" to="." method="_on_player_name_focus_entered"]
 [connection signal="focus_exited" from="PauseOverlay/PlayerName" to="." method="_on_player_name_focus_exited"]
+[connection signal="pressed" from="PauseOverlay/PopUp_UI/Twitter/TwitterButton" to="." method="_on_twitter_button_pressed"]
+[connection signal="pressed" from="PauseOverlay/PopUp_UI/LINE/LINEButton" to="." method="_on_line_button_pressed"]
+[connection signal="pressed" from="PauseOverlay/PopUp_UI/Title/TitleButton" to="." method="_on_title_button_pressed"]
