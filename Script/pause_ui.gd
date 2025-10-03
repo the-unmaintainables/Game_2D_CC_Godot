@@ -11,9 +11,11 @@ func _process(delta: float) -> void:
 		print("pauseアクションの受け取り")
 		# ポーズ状態を切り替える
 		get_tree().paused = not get_tree().paused
-		
 		# オーバーレイの表示/非表示を切り替える
 		$PauseOverlay.visible = get_tree().paused
+		
+		# ポーズ中はBGMを止める
+		BGM.stream_paused = get_tree().paused
 	pass
 
 func _on_start_button_pressed() -> void:

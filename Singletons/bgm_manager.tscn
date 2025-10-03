@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://caxnrex6mhdug" path="res://Singletons/bgm_manager.gd" id="2_bs1lc"]
 
 [node name="BGM_Manager" type="AudioStreamPlayer"]
+process_mode = 3
 stream = ExtResource("1_4iuws")
 volume_db = -15.0
 parameters/looping = true
