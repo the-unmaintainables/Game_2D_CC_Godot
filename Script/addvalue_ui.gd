@@ -10,35 +10,7 @@ const Playfab = preload("res://addons/godot-playfab/PlayFab.gd")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#PlayFabManager.client.connect("logged_in", Callable(self, "_on_login_success"))
-	#PlayFabManager.client.connect("api_error", Callable(self, "_on_api_error"))
-	#PlayFabManager.client.connect("server_error", Callable(self, "_on_server_error"))
-	## 匿名ログインする
-	#PlayFabManager.client.login_anonymous()
-	#$PauseOverlay/PlayerName.virtual_keyboard_enabled = true
-	#$PauseOverlay/PlayerName.focus_mode = Control.FOCUS_ALL
 	pass
-
-# ログイン成功時の関数
-func _on_login_success(result):
-	print("ログイン成功")
-	was_login = true
-	# すでにボタンが押されていたらもう一度ボタンの処理を行う
-	if button_pressed:
-		_on_submit_button_pressed()
-
-# PlayFabのリクエストがAPIエラーの場合
-func _on_api_error(result):
-	error = true
-	print("api_error")
-	# 画面ポーズの解除
-	get_tree().paused = false
-# PlayFabのリクエストがサーバーエラーの場合
-func _on_server_error(result):
-	error = true
-	print("server_error")
-	# 画面ポーズの解除
-	get_tree().paused = false
 
 # Titleボタンが押されたらタイトルへ
 func _on_exit_button_pressed() -> void:
@@ -91,17 +63,3 @@ func sucess_submit_socre(result):
 	print("スコアを記録できました")
 	# 画面ポーズの解除
 	get_tree().paused = false
-
-# 名前入力欄を選択
-func _on_player_name_focus_entered() -> void:
-	# 仮想キーボードを出す
-	#OS.show_virtual_keyboard(line_edit_name.text,
-		#DisplayServer.KEYBOARD_TYPE_DEFAULT,
-		#line_edit_name.global_position,
-		#line_edit_name.size)
-	pass # Replace with function body.
-
-# 選択が外れた時にキーボードを消す
-func _on_player_name_focus_exited() -> void:
-	#OS.hide_virtual_keyboard()
-	pass # Replace with function body.
