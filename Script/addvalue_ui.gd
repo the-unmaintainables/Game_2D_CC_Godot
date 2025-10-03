@@ -63,3 +63,8 @@ func sucess_submit_socre(result):
 	print("スコアを記録できました")
 	# 画面ポーズの解除
 	get_tree().paused = false
+	
+	# ポップアップをだす。2秒待ってタイトルへ戻る
+	$PauseOverlay/PopUp_UI.visible = true
+	await get_tree().create_timer(2.0).timeout
+	GameManager.load_title_scene()

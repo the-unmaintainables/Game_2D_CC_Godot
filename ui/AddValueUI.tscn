@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7xkf6ts56sr6"]
+[gd_scene load_steps=6 format=3 uid="uid://b7xkf6ts56sr6"]
 
 [ext_resource type="Script" uid="uid://skvtuyqvgwoq" path="res://Script/addvalue_ui.gd" id="1_xbakm"]
 [ext_resource type="Texture2D" uid="uid://dnv6ep53hkx7" path="res://Sprite/S_Button1.png" id="2_m2x3l"]
 [ext_resource type="Script" uid="uid://cqoq8ogtcbspm" path="res://Script/button.gd" id="3_1alkk"]
 [ext_resource type="Theme" uid="uid://b6yfl8n2aao2j" path="res://Theme/theme1.tres" id="4_ub8xq"]
+[ext_resource type="PackedScene" uid="uid://babub501c02r2" path="res://ui/pop_up_ui.tscn" id="5_m2x3l"]
 
 [node name="AddValueUI" type="Node2D"]
 process_mode = 3
@@ -105,6 +106,9 @@ offset_bottom = 268.0
 scale = Vector2(1.2583916, 1.2583916)
 theme = ExtResource("4_ub8xq")
 text = "Save Your Score?"
+
+[node name="PopUp_UI" parent="PauseOverlay" instance=ExtResource("5_m2x3l")]
+visible = false
 
 [connection signal="pressed" from="PauseOverlay/ExitTexture/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="PauseOverlay/SubmitTexture2/SubmitButton" to="." method="_on_submit_button_pressed"]

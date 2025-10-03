@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://babub501c02r2"]
+
+[ext_resource type="Theme" uid="uid://b6yfl8n2aao2j" path="res://Theme/theme1.tres" id="1_2i4ba"]
+
+[node name="PopUp_UI" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.3137255)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 395.0
+offset_top = 496.0
+offset_right = 1547.0
+offset_bottom = 560.0
+scale = Vector2(2.114167, 2.114167)
+theme = ExtResource("1_2i4ba")
+text = "Success!"
