@@ -2,14 +2,14 @@ extends CharacterBody2D
 
 const SPEED = 500.0
 const JUMP_VELOCITY = -700.0
-# 基準となる画面サイズ（デザイン時の解像度）
-const BASE_WIDTH = 1920
-const BASE_HEIGHT = 1080
 
 @export var hp = 1
 @export var bullet_scene: PackedScene
-var current_chage
-var max_chage = GameManager.MAX_CHAGE
+@export var bullet_cooldown = 0.5 # 弾のクールタイム
+var can_fire = true # 弾が打てる状態か
+var is_star = true # 無敵かどうか
+var current_chage # 現在のチャージ数
+var max_chage = GameManager.MAX_CHAGE # プレイヤーの最大チャージ数
 
 @onready var chage_timer = $ChageTimer
 @onready var default_position = position
@@ -44,25 +44,15 @@ func _on_player_timeout():
 	SignalManager.player_miss.emit()
 
 func _physics_process(delta: float) -> void:
-	# 現在のビューポートのサイズを取得
-	var current_size = get_viewport().size
-	
-	# 幅と高さの比率を計算
-	var scale_x = current_size.x / float(BASE_WIDTH)
-	var scale_y = current_size.y / float(BASE_HEIGHT)
-	
-	# どちらか小さい方の比率をUI全体のスケールとして使用
-	var scale_factor = min(scale_x, scale_y)
-	scale_factor = 1.0
 	
 	# 重力
 	if not is_on_floor():
-		velocity += get_gravity() * delta * scale_factor * 1.5
+		velocity += get_gravity() * delta * 1.5
 		$AnimatedSprite2D.play("jump")
 
 	# ジャンプ処理
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY * scale_factor
+		velocity.y = JUMP_VELOCITY
 
 	# 左右移動の処理
 	var direction := Input.get_axis("move_left", "move_right")
@@ -71,7 +61,7 @@ func _physics_process(delta: float) -> void:
 		if is_on_floor():
 			if $AnimatedSprite2D.animation != "walk":
 				$AnimatedSprite2D.animation = "walk"
-		velocity.x = direction * SPEED * scale_factor
+		velocity.x = direction * SPEED
 		# プレイヤーの向きを決める
 		$AnimatedSprite2D.flip_h = direction < 0
 		if direction < 0:
@@ -95,15 +85,7 @@ func _physics_process(delta: float) -> void:
 	
 	# チャージボタンが押されたら
 	if Input.is_action_just_pressed("chage"):
-		# タイマーがまだ動いていないなら開始
-		if chage_timer.is_stopped():
-			chage_timer.start()
-			$kirakira1.hide()
-			$kirakira2.hide()
-		else: # タイマーが動いているならチャージをやめる
-			chage_timer.stop()
-			$kirakira1.show()
-			$kirakira2.show()
+		chage_bullet()
 
 # 弾を打つ処理
 func fire_bullet():
@@ -113,7 +95,20 @@ func fire_bullet():
 	# チャージがなかったら打たない
 	if current_chage <= 0:
 		return
+	# クールダウン中なら打てない
+	if !can_fire:
+		return
 	
+	# 弾のクールダウンの処理
+	can_fire = false
+	# can_fireをクールダウンが終わったらtrueに戻す,無敵も戻す
+	get_tree().create_timer(bullet_cooldown).timeout.connect(func():
+		can_fire = true;is_star = true;$kirakira1.show();$kirakira2.show())
+	# 弾のクールダウン中はチャージをできないようにする
+	chage_bullet()
+	
+	# 無敵の解除
+	is_star = false
 	# チャージ数の変更
 	current_chage -= 1
 	SignalManager.update_chage.emit(current_chage)
@@ -131,11 +126,35 @@ func fire_bullet():
 	
 	# 弾が出たら音も出す
 	$ShotSound.play()
-	
-# ダメージを受ける。死亡処理も記述
+
+# チャージボタンを押した処理
+func chage_bullet():
+	# 弾のクールタイム中ならチャージできない
+	if !can_fire:
+		# チャージをやめて、キラキラも消す
+		chage_timer.stop()
+		$kirakira1.hide()
+		$kirakira2.hide()
+		is_star = false
+	# タイマーがまだ動いていないならチャージを開始
+	elif chage_timer.is_stopped():
+		chage_timer.start()
+		$kirakira1.hide()
+		$kirakira2.hide()
+		# 無敵の解除
+		is_star = false
+	else: # タイマーが動いているならチャージをやめる
+		chage_timer.stop()
+		$kirakira1.show()
+		$kirakira2.show()
+		# 無敵にする
+		is_star = true
+
+
+# ダメージを受ける。死亡処理も記述(penetrationはtureなら奈落)
 func damage(amount, penetration=false):
-	# チャージしていないときは無敵
-	if not penetration and chage_timer.is_stopped():
+	# チャージしていないときは無敵, 
+	if not penetration and is_star:
 		return
 	hp -= amount
 	print("Current HP: ", hp)
