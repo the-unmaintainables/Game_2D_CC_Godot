@@ -20,11 +20,18 @@ func _process(delta: float) -> void:
 
 func _on_start_button_pressed() -> void:
 	# ポーズの解除
-	get_tree().paused = not get_tree().paused
+	get_tree().paused = false
+	# BGMのポーズも解除
+	BGM.stream_paused = get_tree().paused
 	
 	# オーバーレイの表示の切り替え
 	$PauseOverlay.visible = get_tree().paused
 
 func _on_exit_button_pressed() -> void:
+	# ポーズの解除
+	get_tree().paused = false
+	# BGMのポーズも解除
+	BGM.stream_paused = get_tree().paused
+	
 	GameManager.load_title_scene()
 	pass # Replace with function body.
