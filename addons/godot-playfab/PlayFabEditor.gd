@@ -24,7 +24,7 @@ func _enter_tree():
 
 
 func _exit_tree():
-	remove_autoload_singleton("PlayFabManager")
+	#remove_autoload_singleton("PlayFabManager")
 
 	if main_panel_instance:
 		main_panel_instance.queue_free()

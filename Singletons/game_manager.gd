@@ -6,11 +6,12 @@ const TITLE_SCENE = preload("res://ui/title.tscn")
 const STAGE1_SCENE = preload("res://Scene/stage_0.tscn")
 const GAMEOVER_SCENE = preload("res://ui/game_over.tscn")
 const RANKING_SCENE = preload("res://ui/show_ranking.tscn")
+const CLEAR_SCENE = preload("res://ui/clear.tscn")
 
-const MAX_CHAGE = 5
+const MAX_CHAGE = 5 # プレイヤーの弾の最大値
 
-var stage_score : int = 0
-var stage_time : int = 0
+var stage_score : int = 0 # ゲームのスコア
+var stage_time : int = 0 # クリアした時に残っている時間
 
 # スマホなのかパソコンなのか
 var touch_ui : bool
@@ -150,3 +151,7 @@ func load_gameover_scene():
 # ランキングへ移動
 func load_ranking_scene():
 	get_tree().change_scene_to_packed(RANKING_SCENE)
+
+# クリア画面へ移動
+func load_clear_scene():
+	get_tree().change_scene_to_packed(CLEAR_SCENE)
