@@ -64,5 +64,6 @@ offset_bottom = 73.272705
 scale = Vector2(0.11453997, 0.2415341)
 theme = ExtResource("3_bmg12")
 text = "Title"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="CanvasLayer/TextureRect/TitleButton" to="." method="_on_button_pressed"]

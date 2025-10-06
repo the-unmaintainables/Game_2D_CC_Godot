@@ -45,14 +45,14 @@ script = ExtResource("4_31wmi")
 
 [node name="Label" type="Label" parent="PauseOverlay/StartTexture/StartButton"]
 layout_mode = 0
-offset_left = 114.3306
-offset_top = 228.43448
-offset_right = 562.33057
-offset_bottom = 292.4345
-scale = Vector2(2.9258585, 7.6754904)
+offset_left = -3.646246
+offset_top = 54.03772
+offset_right = 444.3537
+offset_bottom = 118.03775
+scale = Vector2(3.4655817, 9.091362)
 theme = ExtResource("5_dfwql")
-theme_override_font_sizes/font_size = 64
 text = "ReStart"
+horizontal_alignment = 1
 
 [node name="ExitTexture" type="TextureRect" parent="PauseOverlay"]
 offset_left = 1026.0
@@ -78,14 +78,14 @@ script = ExtResource("4_31wmi")
 
 [node name="Label" type="Label" parent="PauseOverlay/ExitTexture/ExitButton"]
 layout_mode = 0
-offset_left = 224.69601
-offset_top = 184.83517
-offset_right = 544.69604
-offset_bottom = 248.83519
-scale = Vector2(3.5773537, 9.384577)
+offset_left = 91.49637
+offset_top = 45.317886
+offset_right = 411.4964
+offset_bottom = 109.3179
+scale = Vector2(4.4693646, 11.724615)
 theme = ExtResource("5_dfwql")
-theme_override_font_sizes/font_size = 64
 text = "Title"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="PauseOverlay/StartTexture/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="PauseOverlay/ExitTexture/ExitButton" to="." method="_on_exit_button_pressed"]

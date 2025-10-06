@@ -16,37 +16,38 @@ offset_bottom = 1080.0
 texture = ExtResource("2_5w2xo")
 
 [node name="StartTexture" type="TextureRect" parent="."]
-offset_left = 292.00003
+offset_left = 366.0
 offset_top = 741.00006
-offset_right = 1828.0
+offset_right = 2366.0
 offset_bottom = 1765.0
-scale = Vector2(0.37051237, 0.25815007)
+scale = Vector2(0.2785892, 0.2785892)
 texture = ExtResource("3_8lx1x")
+expand_mode = 1
 
 [node name="StartButton" type="Button" parent="StartTexture"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 223.90102
-offset_top = 289.76523
-offset_right = 223.901
-offset_bottom = 289.76526
+offset_left = 305.10852
+offset_top = 294.33997
+offset_right = 305.1084
+offset_bottom = -79.65997
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.7091894, 0.44424036)
+scale = Vector2(0.6970916, 0.6970916)
 script = ExtResource("4_k1m56")
 
 [node name="Label" type="Label" parent="StartTexture/StartButton"]
 layout_mode = 0
-offset_left = 209.4732
-offset_top = 158.6761
-offset_right = 529.4732
-offset_bottom = 222.67612
-scale = Vector2(3.5773537, 9.384577)
+offset_left = -458.2853
+offset_top = 20.597076
+offset_right = 41.71466
+offset_bottom = 180.59706
+scale = Vector2(6, 6)
 theme = ExtResource("5_k1m56")
-theme_override_font_sizes/font_size = 64
 text = "Start"
+horizontal_alignment = 1
 
 [node name="StartTexture2" type="TextureRect" parent="."]
 offset_left = 1292.0
@@ -84,35 +85,36 @@ text = "Clear"
 [node name="RankingTexture" type="TextureRect" parent="."]
 offset_left = 966.0
 offset_top = 741.00006
-offset_right = 2502.0
+offset_right = 2966.0
 offset_bottom = 1765.0
-scale = Vector2(0.37051237, 0.25815007)
+scale = Vector2(0.2785892, 0.2785892)
 texture = ExtResource("3_8lx1x")
+expand_mode = 1
 
 [node name="RankingButton" type="Button" parent="RankingTexture"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 223.90102
-offset_top = 289.76523
-offset_right = 223.901
-offset_bottom = 289.76526
+offset_left = 305.10852
+offset_top = 294.33997
+offset_right = 305.1084
+offset_bottom = -79.65997
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.7091894, 0.44424036)
+scale = Vector2(0.6970916, 0.6970916)
 script = ExtResource("4_k1m56")
 
 [node name="Label" type="Label" parent="RankingTexture/RankingButton"]
 layout_mode = 0
-offset_left = 91.49637
-offset_top = 158.6761
-offset_right = 539.49634
-offset_bottom = 222.67612
-scale = Vector2(3.081576, 8.100142)
+offset_left = -458.2853
+offset_top = 20.597076
+offset_right = 41.71466
+offset_bottom = 180.59706
+scale = Vector2(6, 6)
 theme = ExtResource("5_k1m56")
-theme_override_font_sizes/font_size = 64
 text = "Ranking"
+horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)

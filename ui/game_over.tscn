@@ -47,6 +47,7 @@ scale = Vector2(3.043987, 8.5836735)
 theme = ExtResource("5_lgxpc")
 theme_override_font_sizes/font_size = 64
 text = "ReStart"
+horizontal_alignment = 1
 
 [node name="ExitTexture" type="TextureRect" parent="."]
 offset_left = 995.0
@@ -80,6 +81,7 @@ scale = Vector2(3.5773537, 9.384577)
 theme = ExtResource("5_lgxpc")
 theme_override_font_sizes/font_size = 64
 text = "Title"
+horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)

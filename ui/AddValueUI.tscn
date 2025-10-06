@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7xkf6ts56sr6"]
+[gd_scene load_steps=8 format=3 uid="uid://b7xkf6ts56sr6"]
 
 [ext_resource type="Script" uid="uid://skvtuyqvgwoq" path="res://Script/addvalue_ui.gd" id="1_xbakm"]
 [ext_resource type="Texture2D" uid="uid://dnv6ep53hkx7" path="res://Sprite/S_Button1.png" id="2_m2x3l"]
 [ext_resource type="Script" uid="uid://cqoq8ogtcbspm" path="res://Script/button.gd" id="3_1alkk"]
 [ext_resource type="Theme" uid="uid://b6yfl8n2aao2j" path="res://Theme/theme1.tres" id="4_ub8xq"]
 [ext_resource type="PackedScene" uid="uid://babub501c02r2" path="res://ui/pop_up_ui.tscn" id="5_m2x3l"]
+[ext_resource type="Texture2D" uid="uid://d1gchla2jrt5x" path="res://logos/X_logo.png" id="6_ub8xq"]
+[ext_resource type="Texture2D" uid="uid://cce31d4ir11kf" path="res://logos/LINE_Brand_icon.png" id="7_q50ey"]
 
 [node name="AddValueUI" type="Node2D"]
 process_mode = 3
@@ -25,68 +27,70 @@ color = Color(0, 0, 0, 0.23529412)
 [node name="ExitTexture" type="TextureRect" parent="PauseOverlay"]
 offset_left = 1060.0
 offset_top = 762.0
-offset_right = 2596.0
+offset_right = 3060.0
 offset_bottom = 1786.0
-scale = Vector2(0.37051237, 0.25815007)
+scale = Vector2(0.30286574, 0.30286574)
 texture = ExtResource("2_m2x3l")
+expand_mode = 1
 
 [node name="ExitButton" type="Button" parent="PauseOverlay/ExitTexture"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 223.90102
+offset_left = 293.85938
 offset_top = 289.76523
-offset_right = 223.901
-offset_bottom = 289.76526
+offset_right = 293.85938
+offset_bottom = -84.23474
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.7091894, 0.44424036)
+scale = Vector2(0.7026317, 0.7026317)
 script = ExtResource("3_1alkk")
 
 [node name="Label" type="Label" parent="PauseOverlay/ExitTexture/ExitButton"]
 layout_mode = 0
-offset_left = 87.69066
-offset_top = 184.83517
-offset_right = 471.69067
-offset_bottom = 248.83519
-scale = Vector2(3.5773537, 9.384577)
+offset_left = -399.43024
+offset_top = 1.128048
+offset_right = -15.430237
+offset_bottom = 65.12807
+scale = Vector2(7.5950103, 7.5950103)
 theme = ExtResource("4_ub8xq")
-theme_override_font_sizes/font_size = 64
 text = "Title"
+horizontal_alignment = 1
 
 [node name="SubmitTexture2" type="TextureRect" parent="PauseOverlay"]
 offset_left = 363.0
 offset_top = 762.0
-offset_right = 1899.0
+offset_right = 2363.0
 offset_bottom = 1786.0
-scale = Vector2(0.37051237, 0.25815007)
+scale = Vector2(0.303, 0.303)
 texture = ExtResource("2_m2x3l")
+expand_mode = 1
 
 [node name="SubmitButton" type="Button" parent="PauseOverlay/SubmitTexture2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 223.90102
+offset_left = 283.82837
 offset_top = 289.76523
-offset_right = 223.901
-offset_bottom = 289.76526
+offset_right = 283.8286
+offset_bottom = -84.23474
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.7091894, 0.44424036)
+scale = Vector2(0.7092447, 0.7092447)
 script = ExtResource("3_1alkk")
 
 [node name="Label" type="Label" parent="PauseOverlay/SubmitTexture2/SubmitButton"]
 layout_mode = 0
-offset_left = 87.69066
-offset_top = 184.83517
-offset_right = 471.69067
-offset_bottom = 248.83519
-scale = Vector2(3.5773537, 9.384577)
+offset_left = -279.1981
+offset_top = 5.589039
+offset_right = 104.80191
+offset_bottom = 69.58905
+scale = Vector2(6.8673644, 6.8673644)
 theme = ExtResource("4_ub8xq")
-theme_override_font_sizes/font_size = 64
 text = "Submit"
+horizontal_alignment = 1
 
 [node name="PlayerName" type="LineEdit" parent="PauseOverlay"]
 offset_left = 395.0
@@ -95,87 +99,66 @@ offset_right = 645.0
 offset_bottom = 499.0
 scale = Vector2(4.5159173, 4.5159173)
 theme = ExtResource("4_ub8xq")
+theme_override_font_sizes/font_size = 30
 placeholder_text = "Name"
 max_length = 8
 
 [node name="Label" type="Label" parent="PauseOverlay"]
-offset_left = 311.0
-offset_top = 204.0
-offset_right = 1335.0
-offset_bottom = 268.0
-scale = Vector2(1.2583916, 1.2583916)
+offset_left = 228.0
+offset_top = 109.00001
+offset_right = 1252.0
+offset_bottom = 190.0
+scale = Vector2(2.6057174, 2.6057174)
 theme = ExtResource("4_ub8xq")
+theme_override_font_sizes/font_size = 70
 text = "Save Your Score?"
 
 [node name="PopUp_UI" parent="PauseOverlay" instance=ExtResource("5_m2x3l")]
 
 [node name="Twitter" type="TextureRect" parent="PauseOverlay/PopUp_UI"]
 layout_mode = 0
-offset_left = 62.000183
-offset_top = 762.0
-offset_right = 1598.0002
-offset_bottom = 1786.0
-scale = Vector2(0.37051237, 0.25815007)
-texture = ExtResource("2_m2x3l")
+offset_left = 105.0
+offset_top = 733.0
+offset_right = 2505.0
+offset_bottom = 3186.0
+scale = Vector2(0.11234669, 0.11234669)
+texture = ExtResource("6_ub8xq")
+expand_mode = 1
 
 [node name="TwitterButton" type="Button" parent="PauseOverlay/PopUp_UI/Twitter"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 223.90102
-offset_top = 289.76523
-offset_right = 223.901
-offset_bottom = 289.76526
+offset_left = 8.899391
+offset_top = -26.70282
+offset_right = 8.899414
+offset_bottom = -400.70288
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.7091894, 0.44424036)
-script = ExtResource("3_1alkk")
-
-[node name="Label" type="Label" parent="PauseOverlay/PopUp_UI/Twitter/TwitterButton"]
-layout_mode = 0
-offset_left = 87.69066
-offset_top = 184.83517
-offset_right = 471.69067
-offset_bottom = 248.83519
-scale = Vector2(3.5773537, 9.384577)
-theme = ExtResource("4_ub8xq")
-theme_override_font_sizes/font_size = 64
-text = "twitter"
+scale = Vector2(0.9852435, 1.1935045)
 
 [node name="LINE" type="TextureRect" parent="PauseOverlay/PopUp_UI"]
 layout_mode = 0
-offset_left = 564.0001
-offset_top = 762.0
-offset_right = 2100.0
-offset_bottom = 1786.0
-scale = Vector2(0.37051237, 0.25815007)
-texture = ExtResource("2_m2x3l")
+offset_left = 609.00006
+offset_top = 729.0
+offset_right = 1610.0
+offset_bottom = 1729.0
+scale = Vector2(0.30505964, 0.30505964)
+texture = ExtResource("7_q50ey")
 
 [node name="LINEButton" type="Button" parent="PauseOverlay/PopUp_UI/LINE"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 223.90102
-offset_top = 289.76523
-offset_right = 223.901
-offset_bottom = 289.76526
+offset_left = -0.00016021729
+offset_top = -13.112215
+offset_right = -0.00018310547
+offset_bottom = -13.112244
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.7091894, 0.44424036)
-script = ExtResource("3_1alkk")
-
-[node name="Label" type="Label" parent="PauseOverlay/PopUp_UI/LINE/LINEButton"]
-layout_mode = 0
-offset_left = 87.69066
-offset_top = 184.83517
-offset_right = 471.69067
-offset_bottom = 248.83519
-scale = Vector2(3.5773537, 9.384577)
-theme = ExtResource("4_ub8xq")
-theme_override_font_sizes/font_size = 64
-text = "LINE"
+scale = Vector2(1.0080943, 1.0212938)
 
 [node name="Title" type="TextureRect" parent="PauseOverlay/PopUp_UI"]
 layout_mode = 0
@@ -183,7 +166,7 @@ offset_left = 1060.0
 offset_top = 762.0
 offset_right = 2596.0
 offset_bottom = 1786.0
-scale = Vector2(0.37051237, 0.25815007)
+scale = Vector2(0.303, 0.303)
 texture = ExtResource("2_m2x3l")
 
 [node name="TitleButton" type="Button" parent="PauseOverlay/PopUp_UI/Title"]
@@ -191,25 +174,25 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 223.90102
-offset_top = 289.76523
-offset_right = 223.901
-offset_bottom = 289.76526
+offset_left = 224.42233
+offset_top = 293.72928
+offset_right = 224.42236
+offset_bottom = -80.27075
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.7091894, 0.44424036)
+scale = Vector2(0.7071458, 0.7071458)
 script = ExtResource("3_1alkk")
 
 [node name="Label" type="Label" parent="PauseOverlay/PopUp_UI/Title/TitleButton"]
 layout_mode = 0
-offset_left = 87.69066
-offset_top = 184.83517
-offset_right = 471.69067
-offset_bottom = 248.83519
-scale = Vector2(3.5773537, 9.384577)
+offset_left = 107.34358
+offset_top = 28.00261
+offset_right = 320.3436
+offset_bottom = 228.00261
+scale = Vector2(6.2680793, 6.2680793)
 theme = ExtResource("4_ub8xq")
-theme_override_font_sizes/font_size = 64
 text = "Title"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="PauseOverlay/ExitTexture/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="PauseOverlay/SubmitTexture2/SubmitButton" to="." method="_on_submit_button_pressed"]
