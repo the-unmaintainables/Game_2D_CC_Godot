@@ -30,4 +30,3 @@ var RequireBothUsernameAndEmail: bool
 
 # PlayFab username for the account (3-20 characters)
 var Username: String
-

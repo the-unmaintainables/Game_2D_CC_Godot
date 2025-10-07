@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbk6535bfjiuc"]
+
+[ext_resource type="Texture2D" uid="uid://dnv6ep53hkx7" path="res://Sprite/S_Button1.png" id="1_ambpi"]
+[ext_resource type="Script" uid="uid://cyhmv6ypl3vhy" path="res://Script/create_account.gd" id="1_v0cvp"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v0cvp")
+
+[node name="EmailInput" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 332.0
+offset_right = 759.0
+offset_bottom = 382.0
+scale = Vector2(4, 4)
+theme_override_font_sizes/font_size = 30
+placeholder_text = "mail"
+
+[node name="PasswordInput" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 585.0
+offset_right = 680.0
+offset_bottom = 635.0
+scale = Vector2(4, 4)
+theme_override_font_sizes/font_size = 30
+placeholder_text = "pass"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 596.0
+offset_top = 744.0
+offset_right = 2596.0
+offset_bottom = 1768.0
+scale = Vector2(0.3175412, 0.3175412)
+texture = ExtResource("1_ambpi")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="TextureRect"]
+layout_mode = 0
+offset_left = 296.02457
+offset_top = 286.57697
+offset_right = 2296.0247
+offset_bottom = 936.57697
+scale = Vector2(0.7111845, 0.7111845)
+
+[connection signal="pressed" from="TextureRect/Button" to="." method="_on_button_pressed"]

@@ -114,6 +114,7 @@ theme_override_font_sizes/font_size = 70
 text = "Save Your Score?"
 
 [node name="PopUp_UI" parent="PauseOverlay" instance=ExtResource("5_m2x3l")]
+visible = false
 
 [node name="Twitter" type="TextureRect" parent="PauseOverlay/PopUp_UI"]
 layout_mode = 0

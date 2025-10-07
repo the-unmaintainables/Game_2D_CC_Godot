@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://beu1dsakpgkea"]
+
+[ext_resource type="Script" uid="uid://dr7tepx1lden4" path="res://Script/change_name.gd" id="1_mf4pe"]
+[ext_resource type="Texture2D" uid="uid://dnv6ep53hkx7" path="res://Sprite/S_Button1.png" id="2_e3nko"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mf4pe")
+
+[node name="NameInput" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 332.0
+offset_right = 759.0
+offset_bottom = 382.0
+scale = Vector2(4, 4)
+theme_override_font_sizes/font_size = 30
+placeholder_text = "name"
+max_length = 8
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 596.0
+offset_top = 744.0
+offset_right = 2596.0
+offset_bottom = 1768.0
+scale = Vector2(0.3175412, 0.3175412)
+texture = ExtResource("2_e3nko")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="TextureRect"]
+layout_mode = 0
+offset_left = 296.02457
+offset_top = 286.57697
+offset_right = 2296.0247
+offset_bottom = 936.57697
+scale = Vector2(0.7111845, 0.7111845)
+
+[connection signal="pressed" from="TextureRect/Button" to="." method="_on_button_pressed"]

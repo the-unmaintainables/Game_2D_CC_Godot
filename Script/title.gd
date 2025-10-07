@@ -37,4 +37,5 @@ func _on_ranking_button_pressed() -> void:
 
 # デバッグ用にクリア画面へ
 func _on_clear_button_pressed() -> void:
-	GameManager.load_clear_scene()
+	#GameManager.load_clear_scene()
+	get_tree().change_scene_to_file("res://ui/CreateAccount.tscn")

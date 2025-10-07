@@ -2,55 +2,55 @@ extends JsonSerializable
 class_name PlayerProfileViewConstraints
 
 # Whether to show player's avatar URL. Defaults to false
-var ShowAvatarUrl: bool
+var ShowAvatarUrl: bool = false
 
 # Whether to show the banned until time. Defaults to false
-var ShowBannedUntil: bool
+var ShowBannedUntil: bool = false
 
 # Whether to show campaign attributions. Defaults to false
-var ShowCampaignAttributions: bool
+var ShowCampaignAttributions: bool = false
 
 # Whether to show contact email addresses. Defaults to false
-var ShowContactEmailAddresses: bool
+var ShowContactEmailAddresses: bool = false
 
 # Whether to show the created date. Defaults to false
-var ShowCreated: bool
+var ShowCreated: bool = false
 
 # Whether to show the display name. Defaults to false
-var ShowDisplayName: bool
+var ShowDisplayName: bool = false
 
 # Whether to show player's experiment variants. Defaults to false
-var ShowExperimentVariants: bool
+var ShowExperimentVariants: bool = false
 
 # Whether to show the last login time. Defaults to false
-var ShowLastLogin: bool
+var ShowLastLogin: bool = false
 
 # Whether to show the linked accounts. Defaults to false
-var ShowLinkedAccounts: bool
+var ShowLinkedAccounts: bool = false
 
 # Whether to show player's locations. Defaults to false
-var ShowLocations: bool
+var ShowLocations: bool = false
 
 # Whether to show player's membership information. Defaults to false
-var ShowMemberships: bool
+var ShowMemberships: bool = false
 
 # Whether to show origination. Defaults to false
-var ShowOrigination: bool
+var ShowOrigination: bool = false
 
 # Whether to show push notification registrations. Defaults to false
-var ShowPushNotificationRegistrations: bool
+var ShowPushNotificationRegistrations: bool = false
 
 # Reserved for future development
-var ShowStatistics: bool
+var ShowStatistics: bool = false
 
 # Whether to show tags. Defaults to false
-var ShowTags: bool
+var ShowTags: bool = false
 
 # Whether to show the total value to date in usd. Defaults to false
-var ShowTotalValueToDateInUsd: bool
+var ShowTotalValueToDateInUsd: bool = false
 
 # Whether to show the values to date. Defaults to false
-var ShowValuesToDate: bool
+var ShowValuesToDate: bool = false
 
 func show_all():
 	ShowAvatarUrl = true

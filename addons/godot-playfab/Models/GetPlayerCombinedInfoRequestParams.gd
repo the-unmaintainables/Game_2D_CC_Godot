@@ -2,34 +2,34 @@ extends JsonSerializable
 class_name GetPlayerCombinedInfoRequestParams
 
 # Whether to get character inventories. Defaults to false.
-var GetCharacterInventories: bool
+var GetCharacterInventories: bool = false
 
 # Whether to get the list of characters. Defaults to false.
-var GetCharacterList: bool
+var GetCharacterList: bool = false
 
 # Whether to get player profile. Defaults to false. Has no effect for a new player.
-var GetPlayerProfile: bool
+var GetPlayerProfile: bool = false
 
 # Whether to get player statistics. Defaults to false.
-var GetPlayerStatistics: bool
+var GetPlayerStatistics: bool = false
 
 # Whether to get title data. Defaults to false.
-var GetTitleData: bool
+var GetTitleData: bool = false
 
 # Whether to get the player's account Info. Defaults to false
-var GetUserAccountInfo: bool
+var GetUserAccountInfo: bool = false
 
 # Whether to get the player's custom data. Defaults to false
-var GetUserData: bool
+var GetUserData: bool = false
 
 # Whether to get the player's inventory. Defaults to false
-var GetUserInventory: bool
+var GetUserInventory: bool = false
 
 # Whether to get the player's read only data. Defaults to false
-var GetUserReadOnlyData: bool
+var GetUserReadOnlyData: bool = false
 
 # Whether to get the player's virtual currency balances. Defaults to false
-var GetUserVirtualCurrency: bool
+var GetUserVirtualCurrency: bool = false
 
 # Specific statistics to retrieve. Leave null to get all keys. Has no effect if GetPlayerStatistics is false
 var PlayerStatisticNames: Array

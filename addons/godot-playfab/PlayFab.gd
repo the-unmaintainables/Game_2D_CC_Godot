@@ -34,15 +34,17 @@ func _on_logged_in(login_result: LoginResult):
 	PlayFabManager.save_client_config()
 
 
-func register_email_password(username: String, email: String, password: String, info_request_parameters: GetPlayerCombinedInfoRequestParams):
+func register_email_password(email: String, password: String, info_request_parameters: GetPlayerCombinedInfoRequestParams = GetPlayerCombinedInfoRequestParams.new()):
 	var request_params = RegisterPlayFabUserRequest.new()
 	request_params.TitleId = _title_id
-	request_params.DisplayName = username
-	request_params.Username = username
+	request_params.DisplayName = UUID.v4().substr(0,8)
+	request_params.Username = UUID.v4().substr(0,8)
 	request_params.Email = email
 	request_params.Password = password
-	request_params.InfoRequestParameters = info_request_parameters
-	request_params.RequireBothUsernameAndEmail = true
+	#request_params.InfoRequestParameters = info_request_parameters
+	request_params.RequireBothUsernameAndEmail = false
+	
+	print(request_params.Username)
 
 	var result = _post(request_params, "/Client/RegisterPlayFabUser", Callable(self, "_on_register_email_password"))
 
@@ -103,8 +105,11 @@ func login_anonymous():
 func _on_register_email_password(result: Dictionary):
 	var register_result = RegisterPlayFabUserResult.new()
 	register_result.from_dict(result["data"], register_result)
+	var login_result = LoginResult.new()
+	login_result.from_dict(result["data"], login_result)
 
 	emit_signal("registered", register_result)
+	emit_signal("logged_in", login_result)
 
 
 func _on_login(result: Dictionary):
