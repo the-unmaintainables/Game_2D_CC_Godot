@@ -55,7 +55,7 @@ offset_right = -15.430237
 offset_bottom = 65.12807
 scale = Vector2(7.5950103, 7.5950103)
 theme = ExtResource("4_ub8xq")
-text = "Title"
+text = "No"
 horizontal_alignment = 1
 
 [node name="SubmitTexture2" type="TextureRect" parent="PauseOverlay"]
@@ -89,7 +89,7 @@ offset_right = 104.80191
 offset_bottom = 69.58905
 scale = Vector2(6.8673644, 6.8673644)
 theme = ExtResource("4_ub8xq")
-text = "Submit"
+text = "Yes"
 horizontal_alignment = 1
 
 [node name="PlayerName" type="LineEdit" parent="PauseOverlay"]

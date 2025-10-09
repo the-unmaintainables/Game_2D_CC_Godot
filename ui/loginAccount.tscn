@@ -1,0 +1,111 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlmlur6hl0m4a"]
+
+[ext_resource type="Script" uid="uid://b516u5beqvftx" path="res://Script/login_account.gd" id="1_gb747"]
+[ext_resource type="Texture2D" uid="uid://dnv6ep53hkx7" path="res://Sprite/S_Button1.png" id="2_yrxqc"]
+[ext_resource type="Theme" uid="uid://b6yfl8n2aao2j" path="res://Theme/theme1.tres" id="3_sloxk"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gb747")
+
+[node name="EmailInput" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 332.0
+offset_right = 759.0
+offset_bottom = 382.0
+scale = Vector2(4, 4)
+theme_override_font_sizes/font_size = 30
+placeholder_text = "mail"
+
+[node name="PasswordInput" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 585.0
+offset_right = 680.0
+offset_bottom = 635.0
+scale = Vector2(4, 4)
+theme_override_font_sizes/font_size = 30
+placeholder_text = "pass"
+
+[node name="Login" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 744.0
+offset_right = 2033.0
+offset_bottom = 1768.0
+scale = Vector2(0.3175412, 0.3175412)
+texture = ExtResource("2_yrxqc")
+expand_mode = 1
+
+[node name="LoginButton" type="Button" parent="Login"]
+layout_mode = 0
+offset_left = 296.02457
+offset_top = 286.57697
+offset_right = 2296.0247
+offset_bottom = 936.57697
+scale = Vector2(0.7111845, 0.7111845)
+theme = ExtResource("3_sloxk")
+theme_override_font_sizes/font_size = 500
+text = "Login"
+
+[node name="newAccount" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1210.0
+offset_top = 728.0
+offset_right = 3210.0
+offset_bottom = 1752.0
+scale = Vector2(0.3175412, 0.3175412)
+texture = ExtResource("2_yrxqc")
+expand_mode = 1
+
+[node name="NewAccountButton" type="Button" parent="newAccount"]
+layout_mode = 0
+offset_left = 296.02457
+offset_top = 286.57697
+offset_right = 2296.0247
+offset_bottom = 936.57697
+scale = Vector2(0.7111845, 0.7111845)
+theme = ExtResource("3_sloxk")
+theme_override_font_sizes/font_size = 500
+text = "LogON"
+
+[node name="Anonymous" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 596.0
+offset_top = 744.0
+offset_right = 2596.0
+offset_bottom = 1768.0
+scale = Vector2(0.3175412, 0.3175412)
+texture = ExtResource("2_yrxqc")
+expand_mode = 1
+
+[node name="AnonymousLoginButton" type="Button" parent="Anonymous"]
+layout_mode = 0
+offset_left = 296.02457
+offset_top = 286.57697
+offset_right = 2296.0247
+offset_bottom = 936.57697
+scale = Vector2(0.7111845, 0.7111845)
+theme = ExtResource("3_sloxk")
+theme_override_font_sizes/font_size = 500
+text = "トクメイ"
+
+[node name="LoginMessage" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 83.0
+offset_right = 381.0
+offset_bottom = 169.0
+scale = Vector2(1.7196441, 1.7196441)
+theme = ExtResource("3_sloxk")
+text = "ログインして"
+
+[connection signal="pressed" from="Login/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="newAccount/NewAccountButton" to="." method="_on_new_account_button_pressed"]
+[connection signal="pressed" from="Anonymous/AnonymousLoginButton" to="." method="_on_anonymous_login_button_pressed"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbk6535bfjiuc"]
+[gd_scene load_steps=4 format=3 uid="uid://cbk6535bfjiuc"]
 
 [ext_resource type="Texture2D" uid="uid://dnv6ep53hkx7" path="res://Sprite/S_Button1.png" id="1_ambpi"]
 [ext_resource type="Script" uid="uid://cyhmv6ypl3vhy" path="res://Script/create_account.gd" id="1_v0cvp"]
+[ext_resource type="Theme" uid="uid://b6yfl8n2aao2j" path="res://Theme/theme1.tres" id="3_cd714"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -49,5 +50,15 @@ offset_top = 286.57697
 offset_right = 2296.0247
 offset_bottom = 936.57697
 scale = Vector2(0.7111845, 0.7111845)
+
+[node name="LoginMessage" type="Label" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 83.0
+offset_right = 381.0
+offset_bottom = 169.0
+scale = Vector2(1.7196441, 1.7196441)
+theme = ExtResource("3_cd714")
+text = "ログインして"
 
 [connection signal="pressed" from="TextureRect/Button" to="." method="_on_button_pressed"]

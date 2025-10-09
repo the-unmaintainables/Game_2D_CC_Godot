@@ -25,11 +25,11 @@ func _ready() -> void:
 	signal_manager.connect("stage_start", self.input_init)
 	
 	# ゲームが始まったらPlayFabに匿名ログインして準備しておく
-	PlayFabManager.client.connect("logged_in", Callable(self, "_on_login_success"))
-	PlayFabManager.client.connect("api_error", Callable(self, "_on_api_error"))
-	PlayFabManager.client.connect("server_error", Callable(self, "_on_server_error"))
-	# 匿名ログインする
-	PlayFabManager.client.login_anonymous()
+	#PlayFabManager.client.connect("logged_in", Callable(self, "_on_login_success"))
+	#PlayFabManager.client.connect("api_error", Callable(self, "_on_api_error"))
+	#PlayFabManager.client.connect("server_error", Callable(self, "_on_server_error"))
+	## 匿名ログインする
+	#PlayFabManager.client.login_anonymous()
 	
 	# タッチデバイスがあるかでスマホを判定する
 	var is_pc = true

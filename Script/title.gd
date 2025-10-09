@@ -5,8 +5,8 @@ extends Node2D
 func _ready() -> void:
 	get_tree().paused = false
 	# PlayFabがログインできていないなら画面を消す
-	if !GameManager.was_login:
-		self.visible = false
+	#if !GameManager.was_login:
+		#self.visible = false
 	# PlayFabにログインできたら画面を表示する
 	SignalManager.connect("playfab_login", _on_playfab_login)
 	

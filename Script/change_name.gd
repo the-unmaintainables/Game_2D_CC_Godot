@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 func _on_button_pressed() -> void:
 	change_name()
 
-
+# ログインしているPlayFabのアカウントの表示名を変更する
 func change_name():
 	var name = nameinput.text
 	var body = {
@@ -27,3 +27,4 @@ func change_name():
 func _on_change_name(result):
 	print("名前を変更しました")
 	# ポップアップを出すか画面遷移
+	GameManager.load_title_scene()

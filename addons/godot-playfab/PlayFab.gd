@@ -44,12 +44,13 @@ func register_email_password(email: String, password: String, info_request_param
 	#request_params.InfoRequestParameters = info_request_parameters
 	request_params.RequireBothUsernameAndEmail = false
 	
-	print(request_params.Username)
+	#print(request_params.Username)
 
 	var result = _post(request_params, "/Client/RegisterPlayFabUser", Callable(self, "_on_register_email_password"))
 
 
-func login_with_email(email: String, password: String, custom_tags: Dictionary, info_request_parameters: GetPlayerCombinedInfoRequestParams):
+#func login_with_email(email: String, password: String, custom_tags: Dictionary, info_request_parameters: GetPlayerCombinedInfoRequestParams):
+func login_with_email(email: String, password: String):
 	PlayFabManager.client_config.login_type = PlayFabClientConfig.LoginType.LOGIN_EMAIL
 	PlayFabManager.client_config.login_id = email
 
@@ -57,8 +58,8 @@ func login_with_email(email: String, password: String, custom_tags: Dictionary, 
 	request_params.TitleId = _title_id
 	request_params.Email = email
 	request_params.Password = password
-	request_params.CustomTags = custom_tags
-	request_params.InfoRequestParameters = info_request_parameters
+	#request_params.CustomTags = custom_tags
+	#request_params.InfoRequestParameters = info_request_parameters
 
 	var result = _post(request_params, "/Client/LoginWithEmailAddress", _on_login)
 
@@ -100,7 +101,7 @@ func login_anonymous():
 	var player_profile_view_constraints = PlayerProfileViewConstraints.new()
 	combined_info_request_params.ProfileConstraints = player_profile_view_constraints
 
-	PlayFabManager.client.login_with_custom_id(UUID.v4(), true, combined_info_request_params)
+	PlayFabManager.client.login_with_custom_id("9C229DC5BE7F8E68", true, combined_info_request_params)
 
 func _on_register_email_password(result: Dictionary):
 	var register_result = RegisterPlayFabUserResult.new()
