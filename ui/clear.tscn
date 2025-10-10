@@ -73,7 +73,7 @@ offset_right = 212.3294
 offset_bottom = 89.841034
 scale = Vector2(7.0921807, 7.0921807)
 theme = ExtResource("5_s37jw")
-text = "Title"
+text = "Next"
 horizontal_alignment = 1
 vertical_alignment = 1
 

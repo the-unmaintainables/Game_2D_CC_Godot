@@ -28,20 +28,23 @@ func fetch_leaderboard():
 	var body = {
 		"StatisticName": statistic_name, "StartPosition": 0, "MaxResultsCount": max_results
 	}
+	if !PlayFabManager.client.is_connected("api_error", Callable(self, "_on_error")):
+		PlayFabManager.client.connect("api_error", Callable(self, "_on_error"), CONNECT_ONE_SHOT)
+	if !PlayFabManager.client.is_connected("server_error", Callable(self, "_on_error")):
+		PlayFabManager.client.connect("server_error", Callable(self, "_on_error"), CONNECT_ONE_SHOT)
 	
 	PlayFabManager.client.post_dict_auth(body,"/Client/GetLeaderboard", Playfab.AUTH_TYPE.SESSION_TICKET, Callable(self, "_on_PlayFab_leaderboard_success"))
 	
 
 func _on_PlayFab_leaderboard_success(result):
-	print("ランキング")
-	print(result)
+	#print("ランキング")
+	#print(result)
 	var entries = result["data"]["Leaderboard"]
 	for entry in entries:
 		var name = entry["DisplayName"]
 		var score = entry["StatValue"]
 		var rank = entry["Position"] + 1
-		print("%d位: %s - %d点" % [rank, name, score])
-		#$CanvasLayer/RankingLabel.text += "%d位: %s - %d点\n" % [rank, name, score]
+		#print("%d位: %s - %d点" % [rank, name, score])
 		rank = "%3d" % rank
 		score = "%d" % score
 		# カスタムシーンを作成
@@ -66,3 +69,18 @@ func _on_PlayFab_leaderboard_success(result):
 # 押したらタイトルへ戻る
 func _on_button_pressed() -> void:
 	GameManager.load_title_scene()
+
+# PlayFabのエラー
+func _on_error(error):
+	print("スコアの登録エラー")
+	print(error.errorMessage)
+
+# ノードがシーンツリーから削除されるときに解除するのが一般的です
+func _exit_tree():
+	disconnect_playfab_signals()
+	
+func disconnect_playfab_signals():
+	if PlayFabManager.client.is_connected("api_error", Callable(self, "_on_error")):
+		PlayFabManager.client.disconnect("api_error", Callable(self, "_on_error"))
+	if PlayFabManager.client.is_connected("server_error", Callable(self, "_on_error")):
+		PlayFabManager.client.disconnect("server_error", Callable(self, "_on_error"))

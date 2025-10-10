@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=3 uid="uid://bguyh452cei63"]
+
+[ext_resource type="Script" uid="uid://be7ayffesx3su" path="res://Script/sns.gd" id="1_po4q0"]
+[ext_resource type="Texture2D" uid="uid://dnv6ep53hkx7" path="res://Sprite/S_Button1.png" id="2_ixokw"]
+[ext_resource type="Script" uid="uid://cqoq8ogtcbspm" path="res://Script/button.gd" id="3_7csdh"]
+[ext_resource type="Theme" uid="uid://b6yfl8n2aao2j" path="res://Theme/theme1.tres" id="4_dak7e"]
+[ext_resource type="PackedScene" uid="uid://babub501c02r2" path="res://ui/pop_up_ui.tscn" id="5_r4xta"]
+[ext_resource type="Texture2D" uid="uid://d1gchla2jrt5x" path="res://logos/X_logo.png" id="6_x0i0t"]
+[ext_resource type="Texture2D" uid="uid://cce31d4ir11kf" path="res://logos/LINE_Brand_icon.png" id="7_1eatu"]
+
+[node name="SNS" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_po4q0")
+metadata/_edit_group_ = true
+
+[node name="PauseOverlay" type="CanvasLayer" parent="."]
+process_mode = 1
+
+[node name="PopUp_UI" parent="PauseOverlay" instance=ExtResource("5_r4xta")]
+
+[node name="Twitter" type="TextureRect" parent="PauseOverlay/PopUp_UI"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 733.0
+offset_right = 2505.0
+offset_bottom = 3186.0
+scale = Vector2(0.11234669, 0.11234669)
+texture = ExtResource("6_x0i0t")
+expand_mode = 1
+
+[node name="TwitterButton" type="Button" parent="PauseOverlay/PopUp_UI/Twitter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.899391
+offset_top = -26.70282
+offset_right = 8.899414
+offset_bottom = -400.70288
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9852435, 1.1935045)
+
+[node name="LINE" type="TextureRect" parent="PauseOverlay/PopUp_UI"]
+layout_mode = 0
+offset_left = 609.00006
+offset_top = 729.0
+offset_right = 1610.0
+offset_bottom = 1729.0
+scale = Vector2(0.30505964, 0.30505964)
+texture = ExtResource("7_1eatu")
+
+[node name="LINEButton" type="Button" parent="PauseOverlay/PopUp_UI/LINE"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.00016021729
+offset_top = -13.112215
+offset_right = -0.00018310547
+offset_bottom = -13.112244
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0080943, 1.0212938)
+
+[node name="Title" type="TextureRect" parent="PauseOverlay/PopUp_UI"]
+layout_mode = 0
+offset_left = 1060.0
+offset_top = 762.0
+offset_right = 3460.0
+offset_bottom = 1786.0
+scale = Vector2(0.303, 0.303)
+texture = ExtResource("2_ixokw")
+
+[node name="TitleButton" type="Button" parent="PauseOverlay/PopUp_UI/Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 346.53455
+offset_top = 293.72928
+offset_right = 346.53467
+offset_bottom = -80.27075
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7071458, 0.7071458)
+script = ExtResource("3_7csdh")
+
+[node name="Label" type="Label" parent="PauseOverlay/PopUp_UI/Title/TitleButton"]
+layout_mode = 0
+offset_left = 158.68184
+offset_top = -70.00678
+offset_right = 455.68182
+offset_bottom = 129.99323
+scale = Vector2(7.285795, 7.285795)
+theme = ExtResource("4_dak7e")
+text = "Ranking"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="PauseOverlay/PopUp_UI/Twitter/TwitterButton" to="." method="_on_twitter_button_pressed"]
+[connection signal="pressed" from="PauseOverlay/PopUp_UI/LINE/LINEButton" to="." method="_on_line_button_pressed"]
+[connection signal="pressed" from="PauseOverlay/PopUp_UI/Title/TitleButton" to="." method="_on_title_button_pressed"]
