@@ -120,6 +120,9 @@ func fire_bullet():
 	# 弾の向きを設定
 	if $AnimatedSprite2D.flip_h:
 		bullet_instance.rotation = deg_to_rad(180)
+		bullet_instance.global_position.x -= 50
+	else:
+		bullet_instance.global_position.x += 50
 	
 	# 現在のシーンに弾を追加
 	self.get_parent().add_child(bullet_instance)
