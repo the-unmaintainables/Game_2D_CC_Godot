@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw4sosikp7nv0"]
+[gd_scene load_steps=4 format=3 uid="uid://bw4sosikp7nv0"]
 
 [ext_resource type="Script" uid="uid://dgv45pbur7fkv" path="res://Script/change_name_clear.gd" id="1_2ostt"]
+[ext_resource type="Theme" uid="uid://b6yfl8n2aao2j" path="res://Theme/theme1.tres" id="2_j2ns4"]
 [ext_resource type="Texture2D" uid="uid://dnv6ep53hkx7" path="res://Sprite/S_Button1.png" id="2_ugxqf"]
 
 [node name="Control" type="Control"]
@@ -19,6 +20,7 @@ offset_top = 332.0
 offset_right = 759.0
 offset_bottom = 382.0
 scale = Vector2(4, 4)
+theme = ExtResource("2_j2ns4")
 theme_override_font_sizes/font_size = 30
 placeholder_text = "name"
 max_length = 8

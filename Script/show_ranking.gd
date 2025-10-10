@@ -24,7 +24,7 @@ func _on_login_success(result: LoginResult):
 
 func fetch_leaderboard():
 	var statistic_name = LEADERBOARD_NAME  # PlayFab側で設定した統計名
-	var max_results = 10
+	var max_results = 100
 	var body = {
 		"StatisticName": statistic_name, "StartPosition": 0, "MaxResultsCount": max_results
 	}
