@@ -1,6 +1,6 @@
 extends Control
 
-@onready var email_input: LineEdit = $EmailInput
+@onready var id_input: LineEdit = $IDInput
 @onready var password_input: LineEdit = $PasswordInput
 
 # Called when the node enters the scene tree for the first time.
@@ -14,14 +14,14 @@ func _process(delta: float) -> void:
 
 
 func login_email():
-	var email = email_input.text
+	var id = id_input.text
 	var password = password_input.text
 	
-	print(email)
+	print(id)
 	print(password)
 
 	# 必須入力チェック
-	if email.is_empty() or password.is_empty():
+	if id.is_empty() or password.is_empty():
 		print("エラー: メールアドレス、パスワードをすべて入力してください。")
 		return
 
@@ -36,7 +36,7 @@ func login_email():
 	if !PlayFabManager.client.is_connected("server_error", Callable(self, "_on_server_error")):
 		PlayFabManager.client.connect("server_error", Callable(self, "_on_server_error"), CONNECT_ONE_SHOT)
 	
-	PlayFabManager.client.login_with_email(email, password)
+	PlayFabManager.client.login_with_email(id, password)
 	
 # すでにあるアカウントにログインできた
 func _on_logged_in(result):
@@ -49,24 +49,23 @@ func _on_login_error(error):
 	print("ログインエラー")
 	print(error.errorCode)
 	match error.errorCode:
+		1000:
+			# メールアドレスの形になっていない
+			$LoginMessage.text = "The email address is incorrect."
 		1001:
 			# 存在しないアカウント
-			$LoginMessage.text = "ユーザーが見つかりません。"
-			print("Noユーザー")
+			$LoginMessage.text = "The username is incorrect."
 		1142:
 			# パスワードが間違っている
-			$LoginMessage.text = "パスワードが間違っています。"
-			print("Noパスワード")
+			$LoginMessage.text = "The password is incorrect."
 		1030:
 			# アカウントが停止されている
-			$LoginMessage.text = "あなたのアカウントは利用停止されています。"
-			print("Noアカウント")
+			$LoginMessage.text = "Your account has been suspended."
 		_:
 			# その他の一般的なエラー
 			print("その他のエラー:" + str(error.errorMessage))
-			$LoginMessage.text = "ログインにシッパイしました"
-	$LoginMessage.visible = true
-	$LoginMessage.text =  str(error.errorMessage)
+			$LoginMessage.text = "ログインに失敗しました"
+	
 
 # 匿名ログインを行う
 func login_anony():
@@ -81,7 +80,7 @@ func login_anony():
 
 func _on_server_error(error):
 	print(error["ErrorMessage"])
-	$LoginMessage.text = "もう一度お試しください"
+	$LoginMessage.text = "Please try again."
 
 func _on_new_account_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://ui/CreateAccount.tscn")

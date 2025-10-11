@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbk6535bfjiuc"]
+[gd_scene load_steps=6 format=3 uid="uid://cbk6535bfjiuc"]
 
 [ext_resource type="Texture2D" uid="uid://dnv6ep53hkx7" path="res://Sprite/S_Button1.png" id="1_ambpi"]
 [ext_resource type="Script" uid="uid://cyhmv6ypl3vhy" path="res://Script/create_account.gd" id="1_v0cvp"]
 [ext_resource type="Theme" uid="uid://b6yfl8n2aao2j" path="res://Theme/theme1.tres" id="3_cd714"]
+[ext_resource type="Script" uid="uid://ls4mqkox0mr8" path="res://Script/LineInput.gd" id="3_jrjf0"]
+[ext_resource type="Script" uid="uid://cqoq8ogtcbspm" path="res://Script/button.gd" id="4_71wld"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -13,16 +15,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_v0cvp")
 
-[node name="EmailInput" type="LineEdit" parent="."]
+[node name="IDInput" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 459.0
+offset_left = 380.0
 offset_top = 332.0
-offset_right = 759.0
+offset_right = 680.0
 offset_bottom = 382.0
 scale = Vector2(4, 4)
 theme = ExtResource("3_cd714")
 theme_override_font_sizes/font_size = 30
-placeholder_text = "mail"
+placeholder_text = "id"
+script = ExtResource("3_jrjf0")
 
 [node name="PasswordInput" type="LineEdit" parent="."]
 layout_mode = 0
@@ -33,7 +36,7 @@ offset_bottom = 635.0
 scale = Vector2(4, 4)
 theme = ExtResource("3_cd714")
 theme_override_font_sizes/font_size = 30
-placeholder_text = "pass"
+placeholder_text = "password"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -52,6 +55,17 @@ offset_top = 286.57697
 offset_right = 2296.0247
 offset_bottom = 936.57697
 scale = Vector2(0.7111845, 0.7111845)
+script = ExtResource("4_71wld")
+
+[node name="Label" type="Label" parent="TextureRect/Button"]
+layout_mode = 0
+offset_left = 301.11093
+offset_top = 48.70912
+offset_right = 564.11096
+offset_bottom = 134.70912
+scale = Vector2(5.385562, 5.385562)
+theme = ExtResource("3_cd714")
+text = "Submit"
 
 [node name="LoginMessage" type="Label" parent="."]
 layout_mode = 0
@@ -61,6 +75,7 @@ offset_right = 381.0
 offset_bottom = 169.0
 scale = Vector2(1.7196441, 1.7196441)
 theme = ExtResource("3_cd714")
-text = "ログインして"
+theme_override_font_sizes/font_size = 64
+text = "Sign Up"
 
 [connection signal="pressed" from="TextureRect/Button" to="." method="_on_button_pressed"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlmlur6hl0m4a"]
+[gd_scene load_steps=5 format=3 uid="uid://dlmlur6hl0m4a"]
 
 [ext_resource type="Script" uid="uid://b516u5beqvftx" path="res://Script/login_account.gd" id="1_gb747"]
 [ext_resource type="Texture2D" uid="uid://dnv6ep53hkx7" path="res://Sprite/S_Button1.png" id="2_yrxqc"]
 [ext_resource type="Theme" uid="uid://b6yfl8n2aao2j" path="res://Theme/theme1.tres" id="3_sloxk"]
+[ext_resource type="Script" uid="uid://cqoq8ogtcbspm" path="res://Script/button.gd" id="4_yrxqc"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -13,34 +14,34 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gb747")
 
-[node name="EmailInput" type="LineEdit" parent="."]
+[node name="IDInput" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 459.0
-offset_top = 332.0
-offset_right = 759.0
-offset_bottom = 382.0
+offset_left = 376.0
+offset_top = 329.0
+offset_right = 676.0
+offset_bottom = 379.0
 scale = Vector2(4, 4)
 theme = ExtResource("3_sloxk")
 theme_override_font_sizes/font_size = 30
-placeholder_text = "mail"
+placeholder_text = "id"
 
 [node name="PasswordInput" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 380.0
-offset_top = 585.0
-offset_right = 680.0
-offset_bottom = 635.0
+offset_left = 376.0
+offset_top = 582.0
+offset_right = 676.0
+offset_bottom = 632.0
 scale = Vector2(4, 4)
 theme = ExtResource("3_sloxk")
 theme_override_font_sizes/font_size = 30
-placeholder_text = "pass"
+placeholder_text = "password"
 
 [node name="Login" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 33.0
-offset_top = 744.0
-offset_right = 2033.0
-offset_bottom = 1768.0
+offset_left = 38.0
+offset_top = 750.0
+offset_right = 2038.0
+offset_bottom = 1774.0
 scale = Vector2(0.3175412, 0.3175412)
 texture = ExtResource("2_yrxqc")
 expand_mode = 1
@@ -54,14 +55,24 @@ offset_bottom = 936.57697
 scale = Vector2(0.7111845, 0.7111845)
 theme = ExtResource("3_sloxk")
 theme_override_font_sizes/font_size = 500
-text = "Login"
+script = ExtResource("4_yrxqc")
+
+[node name="Label" type="Label" parent="Login/LoginButton"]
+layout_mode = 0
+offset_left = 199.26459
+offset_top = 48.70912
+offset_right = 496.2646
+offset_bottom = 134.70912
+scale = Vector2(5.3479795, 5.3479795)
+theme = ExtResource("3_sloxk")
+text = "Sign In"
 
 [node name="newAccount" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 1210.0
-offset_top = 728.0
+offset_top = 750.0
 offset_right = 3210.0
-offset_bottom = 1752.0
+offset_bottom = 1774.0
 scale = Vector2(0.3175412, 0.3175412)
 texture = ExtResource("2_yrxqc")
 expand_mode = 1
@@ -75,14 +86,24 @@ offset_bottom = 936.57697
 scale = Vector2(0.7111845, 0.7111845)
 theme = ExtResource("3_sloxk")
 theme_override_font_sizes/font_size = 500
-text = "LogON"
+script = ExtResource("4_yrxqc")
+
+[node name="Label" type="Label" parent="newAccount/NewAccountButton"]
+layout_mode = 0
+offset_left = 172.69598
+offset_top = 39.852917
+offset_right = 486.69598
+offset_bottom = 125.85292
+scale = Vector2(5.348, 5.348)
+theme = ExtResource("3_sloxk")
+text = "Sign UP"
 
 [node name="Anonymous" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 596.0
-offset_top = 744.0
+offset_top = 750.0
 offset_right = 2596.0
-offset_bottom = 1768.0
+offset_bottom = 1774.0
 scale = Vector2(0.3175412, 0.3175412)
 texture = ExtResource("2_yrxqc")
 expand_mode = 1
@@ -96,7 +117,17 @@ offset_bottom = 936.57697
 scale = Vector2(0.7111845, 0.7111845)
 theme = ExtResource("3_sloxk")
 theme_override_font_sizes/font_size = 500
-text = "トクメイ"
+script = ExtResource("4_yrxqc")
+
+[node name="Label" type="Label" parent="Anonymous/AnonymousLoginButton"]
+layout_mode = 0
+offset_left = 389.67297
+offset_top = 44.28102
+offset_right = 610.673
+offset_bottom = 130.28102
+scale = Vector2(5.348, 5.348)
+theme = ExtResource("3_sloxk")
+text = "Guest"
 
 [node name="LoginMessage" type="Label" parent="."]
 layout_mode = 0
@@ -106,7 +137,8 @@ offset_right = 381.0
 offset_bottom = 169.0
 scale = Vector2(1.7196441, 1.7196441)
 theme = ExtResource("3_sloxk")
-text = "ログインして"
+theme_override_font_sizes/font_size = 64
+text = "Sign In"
 
 [connection signal="pressed" from="Login/LoginButton" to="." method="_on_login_button_pressed"]
 [connection signal="pressed" from="newAccount/NewAccountButton" to="." method="_on_new_account_button_pressed"]

@@ -3,6 +3,8 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# 例: 英数字のみ許可
+	$IDInput.regex = "^[A-Za-z0-9]*$"
 	pass # Replace with function body.
 
 
@@ -15,21 +17,21 @@ func _on_button_pressed() -> void:
 	register_new_user()
 
 
-@onready var email_input: LineEdit = $EmailInput
+@onready var id_input: LineEdit = $IDInput
 @onready var password_input: LineEdit = $PasswordInput
 
 # ----------------------------------------------------
 # ユーザー登録処理を開始する関数
 # ----------------------------------------------------
 func register_new_user():
-	var email = email_input.text
+	var id = id_input.text
 	var password = password_input.text
 	
-	print(email)
+	print(id)
 	print(password)
 
 	# 必須入力チェック
-	if email.is_empty() or password.is_empty():
+	if id.is_empty() or password.is_empty():
 		print("エラー: メールアドレス、パスワードをすべて入力してください。")
 		return
 
@@ -46,8 +48,8 @@ func register_new_user():
 		PlayFabManager.client.connect("server_error", Callable(self, "_on_server_error"), CONNECT_ONE_SHOT)
 		
 	# API呼び出し
-	# メールアドレスとパスワードだけでアカウントを作成とログイン
-	PlayFabManager.client.register_email_password(email, password)
+	# idとパスワードだけでアカウントを作成とログイン
+	PlayFabManager.client.register_email_password(id, password)
 	
 	print("ユーザー登録リクエストを送信しました...")
 
@@ -66,28 +68,30 @@ func _on_registration_success(result):
 func _on_api_call_failed(error):
 	print("APIエラー")
 	print("❌ 登録失敗。エラーメッセージ:")
+	print(error)
 	var errorMessage = error.errorMessage
 	var error_code = error.error_code
+	print(error_code)
 	print(errorMessage)
+	print(error.code)
 	# エラーコードに応じてユーザーにメッセージを表示（例: ユーザー名が既に使用されている、パスワードが短すぎるなど）
 	match error_code:
 		# 1. ユーザー名、メールアドレスの重複エラー
 		1007: # UsernameNotAvailable
-			$LoginMessage.text = "このユーザー名は既に使用されています。"
+			$LoginMessage.text = "This ID is already in use."
 		1023: # EmailAddressNotAvailable
-			$LoginMessage.text = "このメールアドレスは既に使用されています。"
+			$LoginMessage.text = "This email address is already in use."
 		# 5. その他のエラー
 		_:
 			# より詳細なデバッグ情報（開発者向け）
 			print("未処理のエラーコード:", error_code, "メッセージ:", errorMessage)
-			$LoginMessage.text = "登録に失敗しました (ErrorCode: " + str(error_code) + ")。"
-	# エラーメッセージを一定時間表示後にクリアする処理などを追加
+			$LoginMessage.text = "Registration failed."
 	$LoginMessage.visible = true
 
 func _on_server_error(error):
 	print("serverエラー")
 	print(error.errorMessage)
-	$LoginMessage.text = "もう一度お試しください"
+	$LoginMessage.text = "Please try again."
 
 # ノードがシーンツリーから削除されるときに解除するのが一般的です
 func _exit_tree():

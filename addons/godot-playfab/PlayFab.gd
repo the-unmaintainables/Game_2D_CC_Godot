@@ -34,12 +34,12 @@ func _on_logged_in(login_result: LoginResult):
 	PlayFabManager.save_client_config()
 
 
-func register_email_password(email: String, password: String, info_request_parameters: GetPlayerCombinedInfoRequestParams = GetPlayerCombinedInfoRequestParams.new()):
+func register_email_password(username: String, password: String, info_request_parameters: GetPlayerCombinedInfoRequestParams = GetPlayerCombinedInfoRequestParams.new()):
 	var request_params = RegisterPlayFabUserRequest.new()
 	request_params.TitleId = _title_id
-	request_params.DisplayName = UUID.v4().substr(0,8)
-	request_params.Username = UUID.v4().substr(0,8)
-	request_params.Email = email
+	request_params.DisplayName = username
+	request_params.Username = username
+	request_params.Email = "guest" + UUID.v4().substr(0,8) + "@gmail.com"
 	request_params.Password = password
 	#request_params.InfoRequestParameters = info_request_parameters
 	request_params.RequireBothUsernameAndEmail = false
